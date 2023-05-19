@@ -813,7 +813,7 @@
 											"font": "Arial;13;1",
 											"left": 669,
 											"top": 191,
-											"width": 121.7607421875,
+											"width": 216.1884765625,
 											"height": 13,
 											"text": "Tour"
 										},
@@ -848,7 +848,7 @@
 									"font": "Arial;13;0",
 									"left": 664,
 									"top": 184,
-									"width": 131.7607421875,
+									"width": 226.1884765625,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGIM2EozcsF53A="
@@ -885,17 +885,34 @@
 											"font": "Arial;13;0",
 											"left": 669,
 											"top": 214,
-											"width": 121.7607421875,
+											"width": 216.1884765625,
 											"height": 13,
 											"text": "+tourActuel",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAGING7g4mG5/2c=",
+											"_parent": {
+												"$ref": "AAAAAAGIM2EozssJnQE="
+											},
+											"model": {
+												"$ref": "AAAAAAGING7gs2G2wVE="
+											},
+											"font": "Arial;13;0",
+											"left": 669,
+											"top": 229,
+											"width": 216.1884765625,
+											"height": 13,
+											"text": "+tourListeJoueurs: file",
 											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 664,
 									"top": 209,
-									"width": 131.7607421875,
-									"height": 23
+									"width": 226.1884765625,
+									"height": 38
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -918,18 +935,52 @@
 											},
 											"font": "Arial;13;0",
 											"left": 669,
-											"top": 237,
-											"width": 121.7607421875,
+											"top": 252,
+											"width": 216.1884765625,
 											"height": 13,
 											"text": "+tourSuivant(Joueur)",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGINGAMkWGq96g=",
+											"_parent": {
+												"$ref": "AAAAAAGIM2EozssKrSE="
+											},
+											"model": {
+												"$ref": "AAAAAAGINGAMWGGnNC0="
+											},
+											"font": "Arial;13;0",
+											"left": 669,
+											"top": 267,
+											"width": 216.1884765625,
+											"height": 13,
+											"text": "+tourConditionVictoire(plateauUnites)",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGINGraj2GytcY=",
+											"_parent": {
+												"$ref": "AAAAAAGIM2EozssKrSE="
+											},
+											"model": {
+												"$ref": "AAAAAAGINGraZGGvtOc="
+											},
+											"font": "Arial;13;0",
+											"left": 669,
+											"top": 282,
+											"width": 216.1884765625,
+											"height": 13,
+											"text": "+tourDeplacementReset()",
 											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 664,
-									"top": 232,
-									"width": 131.7607421875,
-									"height": 23
+									"top": 247,
+									"width": 226.1884765625,
+									"height": 53
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -968,8 +1019,8 @@
 							"containerChangeable": true,
 							"left": 664,
 							"top": 184,
-							"width": 131.7607421875,
-							"height": 71,
+							"width": 226.1884765625,
+							"height": 116,
 							"nameCompartment": {
 								"$ref": "AAAAAAGIM2EozcsETYE="
 							},
@@ -1654,7 +1705,7 @@
 											"top": 155,
 											"width": 149.2333984375,
 											"height": 13,
-											"text": "+Operation1()",
+											"text": "+jeuQuitter()",
 											"horizontalAlignment": 0
 										}
 									],
@@ -1911,7 +1962,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGIM11PMcon+pg="
 							},
-							"name": "unitePotAttaque"
+							"name": "unitePotAttaque",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -1919,7 +1971,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGIM11PMcon+pg="
 							},
-							"name": "unitePotDefense"
+							"name": "unitePotDefense",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -1936,7 +1989,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGIM11PMcon+pg="
 							},
-							"name": "unitePotDeplacement"
+							"name": "unitePotDeplacement",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -1962,7 +2016,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGIM11PMcon+pg="
 							},
-							"name": "uniteX"
+							"name": "uniteX",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -1970,7 +2025,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGIM11PMcon+pg="
 							},
-							"name": "uniteY"
+							"name": "uniteY",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -1978,7 +2034,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGIM11PMcon+pg="
 							},
-							"name": "unitePVCourant"
+							"name": "unitePVCourant",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -1995,7 +2052,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGIM11PMcon+pg="
 							},
-							"name": "uniteType"
+							"name": "uniteType",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -2003,7 +2061,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGIM11PMcon+pg="
 							},
-							"name": "uniteDeplacementCourant"
+							"name": "uniteDeplacementCourant",
+							"type": ""
 						}
 					],
 					"operations": [
@@ -2106,7 +2165,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGIM11kBcpRNwI="
 							},
-							"name": "caseX"
+							"name": "caseX",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -2114,7 +2174,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGIM11kBcpRNwI="
 							},
-							"name": "caseY"
+							"name": "caseY",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -2122,7 +2183,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGIM11kBcpRNwI="
 							},
-							"name": "caseImage"
+							"name": "caseImage",
+							"type": ""
 						}
 					]
 				},
@@ -2142,6 +2204,15 @@
 							},
 							"name": "tourActuel",
 							"type": ""
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAGING7gs2G2wVE=",
+							"_parent": {
+								"$ref": "AAAAAAGIM2EozcsBox8="
+							},
+							"name": "tourListeJoueurs",
+							"type": "file"
 						}
 					],
 					"operations": [
@@ -2163,6 +2234,33 @@
 									"type": ""
 								}
 							]
+						},
+						{
+							"_type": "UMLOperation",
+							"_id": "AAAAAAGINGAMWGGnNC0=",
+							"_parent": {
+								"$ref": "AAAAAAGIM2EozcsBox8="
+							},
+							"name": "tourConditionVictoire",
+							"parameters": [
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGING+RzWG+fN0=",
+									"_parent": {
+										"$ref": "AAAAAAGINGAMWGGnNC0="
+									},
+									"name": "plateauUnites",
+									"type": ""
+								}
+							]
+						},
+						{
+							"_type": "UMLOperation",
+							"_id": "AAAAAAGINGraZGGvtOc=",
+							"_parent": {
+								"$ref": "AAAAAAGIM2EozcsBox8="
+							},
+							"name": "tourDeplacementReset"
 						}
 					]
 				},
@@ -2198,7 +2296,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGIM2GpVsssE1A="
 							},
-							"name": "joueurNom"
+							"name": "joueurNom",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -2206,7 +2305,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGIM2GpVsssE1A="
 							},
-							"name": "joueurCouleur"
+							"name": "joueurCouleur",
+							"type": ""
 						}
 					]
 				},
@@ -2329,7 +2429,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGINB8ST81u7Xc="
 							},
-							"name": "Operation1"
+							"name": "jeuQuitter"
 						}
 					]
 				},
