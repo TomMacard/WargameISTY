@@ -40,8 +40,12 @@ public class MenuPrincipal extends JPanel implements ActionListener {
     private CardLayout cardLayout;
     private JPanel cardPanel;
     private static final String MENU_PRINCIPAL = "menu_principal";
+    private static final String NouvellePartieInterface_PANEL = "nouvellepartie_panel";
     private static final String AIDE_PANEL = "aide_panel";
     private AideInterface aideInterface;
+    private NouvellePartieInterface nouvellePartieInterface;
+    private Application application;
+
 
 
 
@@ -60,16 +64,6 @@ public class MenuPrincipal extends JPanel implements ActionListener {
         aideInterface = new AideInterface(cardLayout, cardPanel);
 
         setLayout(new BorderLayout());
-
-        /*Dimension size = new Dimension(1400, 850);
-        JFrame frame = new JFrame("Wargame");
-        frame.setLayout(new BorderLayout());
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
-        frame.setSize(size);
-        frame.setMaximumSize(size);
-        frame.setMinimumSize(size);*/
-
 
         JPanel menuPanel = new JPanel();
         menuPanel.setLayout(new BorderLayout());
@@ -169,10 +163,9 @@ public class MenuPrincipal extends JPanel implements ActionListener {
         aideButton.addActionListener(e -> System.out.println("aide"));
         quitterButton.addActionListener(e -> System.exit(0));
 
-        /*frame.add(panel, BorderLayout.CENTER);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);*/
+        nouvellePartieInterface = new NouvellePartieInterface(cardLayout, cardPanel, this.application);
+        cardPanel.add(nouvellePartieInterface, "nouvellePartie");
+
         cardPanel = new JPanel(cardLayout) {
             @Override
             public Dimension getPreferredSize() {
@@ -181,9 +174,23 @@ public class MenuPrincipal extends JPanel implements ActionListener {
         };
         add(cardPanel, BorderLayout.CENTER);
         aideInterface = new AideInterface(cardLayout, cardPanel);
+        nouvellePartieInterface = new NouvellePartieInterface(cardLayout, cardPanel, application);
+        nouvellePartieInterface.setApplication(application); // Ajoutez cette ligne pour définir l'instance d'Application
+        //cardPanel.add(nouvellePartieInterface, NouvellePartieInterface_PANEL);
+        nouvellePartieInterface.setApplication(this.application);
+        cardPanel.add(nouvellePartieInterface, "nouvellePartie");
 
 
+
+
+        cardPanel.add(nouvellePartieInterface, NouvellePartieInterface_PANEL);
         cardPanel.add(aideInterface, AIDE_PANEL);
+
+        nouvellePartieButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel, NouvellePartieInterface_PANEL);
+            }
+        });
 
         aideButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -197,6 +204,12 @@ public class MenuPrincipal extends JPanel implements ActionListener {
 
 
     }
+
+    public void setApplication(Application application) {
+        this.application = application;
+        nouvellePartieInterface.setApplication(application); // Ajoutez cette ligne pour définir l'instance de Application dans NouvellePartieInterface
+    }
+
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == nouvellePartieButton) {
