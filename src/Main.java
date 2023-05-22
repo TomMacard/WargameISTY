@@ -2,28 +2,25 @@ import Model.Plateau;
 import Model.VariablesGlobales;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame("Hexagonal Field");
+            JFrame frame = new JFrame("Wargame ISTY");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-            Plateau hexField = new Plateau(VariablesGlobales.X_MAX, VariablesGlobales.Y_MAX, 30);
-            frame.add(hexField);
+            Plateau plateau = new Plateau(VariablesGlobales.X_MAX, VariablesGlobales.Y_MAX);
+            frame.add(plateau);
+
+
+
             frame.pack();
             frame.setVisible(true);
         });
 
 
     }
-
-
-
-
-
-
-
 
 /*
 

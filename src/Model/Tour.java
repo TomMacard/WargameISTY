@@ -36,4 +36,9 @@ public class Tour {
         tourActuel++; // Incrémente "tourActuel"
     }
 
+
+    // fonction reinitialiser cout de deplacement unite
+
+    //pour toutes les unites, faire : Unite.reinitialiserDeplacementFinTour()
+
 }
