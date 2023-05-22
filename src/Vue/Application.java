@@ -37,7 +37,7 @@ public class Application extends JFrame {
                 try {
                     Application application = new Application();
                     application.setSize(new Dimension(1400, 450));
-                } catch+ (Exception e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
