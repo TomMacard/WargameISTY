@@ -76,4 +76,6 @@ public class Case {
     public void setCaseImage(boolean caseImage) {
         this.caseImage = caseImage;
     }
+
+
 }

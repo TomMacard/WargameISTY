@@ -11,10 +11,11 @@ public class Unite {
     private int uniteY;
     private int unitePVCourant;
     private String uniteType;
-    private String uniteDeplacementCourant;
+    private int uniteDeplacementCourant;
+    private Joueur uniteJoueur;
 
     public Unite(int potAttaque, int potDefense, int PVmax, int potDeplacement, int vision, int portee,
-                 int x, int y, int PVcourant, String type, String deplacementCourant) {
+                 int x, int y, int PVcourant, String type, Joueur uniteJoueur) {
         this.unitePotAttaque = potAttaque;
         this.unitePotDefense = potDefense;
         this.unitePVmax = PVmax;
@@ -25,7 +26,16 @@ public class Unite {
         this.uniteY = y;
         this.unitePVCourant = PVcourant;
         this.uniteType = type;
-        this.uniteDeplacementCourant = deplacementCourant;
+        this.uniteDeplacementCourant = potDeplacement;
+        this.uniteJoueur = uniteJoueur;
+    }
+
+    public Joueur getUniteJoueur() {
+        return uniteJoueur;
+    }
+
+    public void setUniteJoueur(Joueur uniteJoueur) {
+        this.uniteJoueur = uniteJoueur;
     }
 
     // Getters
@@ -69,7 +79,7 @@ public class Unite {
         return uniteType;
     }
 
-    public String getUniteDeplacementCourant() {
+    public int getUniteDeplacementCourant() {
         return uniteDeplacementCourant;
     }
 
@@ -114,7 +124,48 @@ public class Unite {
         this.uniteType = uniteType;
     }
 
-    public void setUniteDeplacementCourant(String uniteDeplacementCourant) {
+    public void setUniteDeplacementCourant(int uniteDeplacementCourant) {
         this.uniteDeplacementCourant = uniteDeplacementCourant;
     }
+
+    public void reinitialiserDeplacementFinTour() {
+        this.uniteDeplacementCourant=this.unitePotDeplacement;
+    }
+
+    public Case unitePlateauCase(Plateau plateau) {
+        int x=this.getUniteX();
+        int y=this.getUniteY();
+        Case tuile=plateau.plateauCases[x][y];
+        return tuile;
+    }
+
+    public void attaqueEtDefense(Unite attaquant, Unite cible, Plateau plateau) {
+
+        // Effectuer l'attaque
+        int potentielAttaque = attaquant.getUnitePotAttaque();
+        int pvCourant = cible.getUnitePVCourant();
+        Case caseCible= cible.unitePlateauCase(plateau);
+        int bonusDefense= caseCible.getCaseDefense();
+
+        // Réduire le potentiel de défense de la cible en fonction du potentiel d'attaque de l'attaquant
+        pvCourant -= (potentielAttaque*bonusDefense)/100;
+        int resultat = (int) pvCourant ;
+
+        // Si le potentiel de défense est négatif ou nul, la cible est détruite
+        if (pvCourant <= 0) {
+            Joueur joueurProprietaire = getUniteJoueur();
+            if (joueurProprietaire != null) {
+                joueurProprietaire.getJoueurUnites().remove(cible);
+            }
+            // Supprimer l'unité du plateau
+            if (plateau != null) {
+                plateau.plateauUnites[cible.uniteX][cible.uniteY]=(null);
+            }
+        } else {
+            cible.setUnitePVCourant(pvCourant);
+        }
+    }
+
+
+
 }
