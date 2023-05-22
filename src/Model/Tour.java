@@ -28,4 +28,12 @@ public class Tour {
     public void setTourListeJoueurs(Queue<Joueur> tourListeJoueurs) {
         this.tourListeJoueurs = tourListeJoueurs;
     }
+
+    public Tour() {
+        tourActuel = 0; // Initialisation de  "tourActuel" à 0
+    }
+    public void incrementerTour() {
+        tourActuel++; // Incrémente "tourActuel"
+    }
+
 }
