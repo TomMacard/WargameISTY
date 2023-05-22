@@ -1,10 +1,29 @@
-import Model.Models;
+import Model.Plateau;
+import Model.VariablesGlobales;
+
+import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
-        System.out.println("hello Bassem !");
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Hexagonal Field");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+            Plateau hexField = new Plateau(VariablesGlobales.X_MAX, VariablesGlobales.Y_MAX, 30);
+            frame.add(hexField);
+            frame.pack();
+            frame.setVisible(true);
+        });
+
+
     }
+
+
+
+
+
+
+
 
 /*
 
