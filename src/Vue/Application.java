@@ -12,6 +12,7 @@ public class Application extends JFrame {
     public Application() {
         Dimension size = new Dimension(1400, 830);
         menuPrincipal = new MenuPrincipal();
+        menuPrincipal.setBorder(BorderFactory.createEmptyBorder());
         menuPrincipal.setApplication(this);
         frame = new JFrame("Wargame");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

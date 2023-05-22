@@ -1,29 +1,27 @@
 package Model;
 
-import java.awt.*;
-
 public class Case {
-    private String caseType;
+    private String caseNom;
     private int caseCoutDeplacement;
     private int caseDefense;
     private boolean caseTraversable;
     private int caseX;
     private int caseY;
-    private Color caseCouleur;
+    private boolean caseImage;
 
-    public Case(String type, int coutDeplacement, int defense, boolean traversable, int x, int y, Color couleur) {
-        this.caseType = type;
+    public Case(String nom, int coutDeplacement, int defense, boolean traversable, int x, int y, boolean image) {
+        this.caseNom = nom;
         this.caseCoutDeplacement = coutDeplacement;
         this.caseDefense = defense;
         this.caseTraversable = traversable;
         this.caseX = x;
         this.caseY = y;
-        this.caseCouleur = couleur;
+        this.caseImage = image;
     }
 
     // Getters
-    public String getCaseType() {
-        return caseType;
+    public String getCaseNom() {
+        return caseNom;
     }
 
     public int getCaseCoutDeplacement() {
@@ -46,13 +44,13 @@ public class Case {
         return caseY;
     }
 
-    public Color getCaseCouleur() {
-        return caseCouleur;
+    public boolean isCaseImage() {
+        return caseImage;
     }
 
     // Setters
-    public void setCaseType(String caseNom) {
-        this.caseType = caseNom;
+    public void setCaseNom(String caseNom) {
+        this.caseNom = caseNom;
     }
 
     public void setCaseCoutDeplacement(int caseCoutDeplacement) {
@@ -75,8 +73,8 @@ public class Case {
         this.caseY = caseY;
     }
 
-    public void setCaseCouleur(Color caseCouleur) {
-        this.caseCouleur = caseCouleur;
+    public void setCaseImage(boolean caseImage) {
+        this.caseImage = caseImage;
     }
 
 

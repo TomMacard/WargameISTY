@@ -1,25 +1,8 @@
-import Model.Plateau;
-import Model.VariablesGlobales;
-
-import javax.swing.*;
-import java.awt.*;
-
+import Model.Models;
 public class Main {
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame("Wargame ISTY");
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-            Plateau plateau = new Plateau(VariablesGlobales.X_MAX, VariablesGlobales.Y_MAX);
-            frame.add(plateau);
-
-
-
-            frame.pack();
-            frame.setVisible(true);
-        });
-
-
+        System.out.println("Hello world!");
+        System.out.println("hello Bassem !");
     }
 
 /*

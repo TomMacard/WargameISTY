@@ -28,17 +28,4 @@ public class Tour {
     public void setTourListeJoueurs(Queue<Joueur> tourListeJoueurs) {
         this.tourListeJoueurs = tourListeJoueurs;
     }
-
-    public Tour() {
-        tourActuel = 0; // Initialisation de  "tourActuel" à 0
-    }
-    public void incrementerTour() {
-        tourActuel++; // Incrémente "tourActuel"
-    }
-
-
-    // fonction reinitialiser cout de deplacement unite
-
-    //pour toutes les unites, faire : Unite.reinitialiserDeplacementFinTour()
-
 }
