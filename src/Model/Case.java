@@ -78,4 +78,6 @@ public class Case {
     public void setCaseCouleur(Color caseCouleur) {
         this.caseCouleur = caseCouleur;
     }
+
+
 }
