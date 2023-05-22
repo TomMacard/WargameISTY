@@ -19,8 +19,10 @@ public class Plateau extends JPanel implements MouseListener {
         this.plateauHexColors = new Color[plateauLignes][plateauColonnes];
 
         this.plateauUnites = null;
-        
-        assignRandomColors();
+
+        plateauAppliquerCasesRandom();
+
+        //assignRandomColors();
 
         addMouseListener(this);
     }
@@ -73,18 +75,21 @@ public class Plateau extends JPanel implements MouseListener {
         int col = (int) (x / (30 * 2));
         int row = (int) ((y - (col % 2) * 30) / (30 * 2));
 
-        System.out.println("Case cliquée : "+col+ ", "+row);
+        if (row <= VariablesGlobales.X_MAX && col <= VariablesGlobales.Y_MAX) {
+            System.out.println("Case cliquée : "+col+ ", "+row);
+            System.out.println("Case type    : "+plateauCases[x][y].getCaseType());
 
-        //Case casecliquee=plateauObtenirCase(row,col);
+            //Case casecliquee=plateauObtenirCase(row,col);
 
-        //System.out.println(casecliquee.getCaseType());
+            //System.out.println(casecliquee.getCaseType());
 
 
-        // Set the color of the clicked hexagon to a chosen color
-        setHexagonColor(row, col, Color.RED);
+            // Set the color of the clicked hexagon to a chosen color
+            setHexagonColor(row, col, Color.RED);
 
-        // Repaint the panel to reflect the updated color
-        repaint();
+            // Repaint the panel to reflect the updated color
+            repaint();
+        }
     }
 
     // Function to set the color of a hexagon at specified coordinates
@@ -113,6 +118,14 @@ public class Plateau extends JPanel implements MouseListener {
             for (int col = 0; col < plateauColonnes; col++) {
                 int colorIndex = random.nextInt(5); // Randomly choose an index from 0 to 4
                 plateauHexColors[row][col] = getColorByIndex(colorIndex);
+            }
+        }
+    }
+
+    private void plateauAppliquerCasesRandom() {
+        for (int row = 0; row < plateauLignes; row++) {
+            for (int col = 0; col < plateauColonnes; col++) {
+                this.plateauCases[row][col]=new caseForet(true,row,col);
             }
         }
     }
