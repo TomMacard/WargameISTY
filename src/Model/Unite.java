@@ -11,10 +11,10 @@ public class Unite {
     private int uniteY;
     private int unitePVCourant;
     private String uniteType;
-    private String uniteDeplacementCourant;
+    private int uniteDeplacementCourant;
 
     public Unite(int potAttaque, int potDefense, int PVmax, int potDeplacement, int vision, int portee,
-                 int x, int y, int PVcourant, String type, String deplacementCourant) {
+                 int x, int y, int PVcourant, String type) {
         this.unitePotAttaque = potAttaque;
         this.unitePotDefense = potDefense;
         this.unitePVmax = PVmax;
@@ -25,7 +25,7 @@ public class Unite {
         this.uniteY = y;
         this.unitePVCourant = PVcourant;
         this.uniteType = type;
-        this.uniteDeplacementCourant = deplacementCourant;
+        this.uniteDeplacementCourant = potDeplacement;
     }
 
     // Getters
@@ -69,7 +69,7 @@ public class Unite {
         return uniteType;
     }
 
-    public String getUniteDeplacementCourant() {
+    public int getUniteDeplacementCourant() {
         return uniteDeplacementCourant;
     }
 
@@ -114,7 +114,13 @@ public class Unite {
         this.uniteType = uniteType;
     }
 
-    public void setUniteDeplacementCourant(String uniteDeplacementCourant) {
+    public void setUniteDeplacementCourant(int uniteDeplacementCourant) {
         this.uniteDeplacementCourant = uniteDeplacementCourant;
     }
+
+    public void reinitialiserDeplacementFinTour() {
+        this.uniteDeplacementCourant=this.unitePotDeplacement;
+    }
+
+
 }

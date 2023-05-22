@@ -72,7 +72,7 @@ public class MenuPrincipal extends JPanel implements ActionListener {
 
         BufferedImage imagefond = null;
         try {
-            imagefond = ImageIO.read(new File("C:/Users/Lenovo/Downloads/WARGAME/WargameISTY/src/images/arpl.jpg"));
+            imagefond = ImageIO.read(new File("src/images/arpl.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(-1);
