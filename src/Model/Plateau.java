@@ -10,12 +10,15 @@ public class Plateau extends JPanel implements MouseListener {
     private int plateauLignes;
     private int plateauColonnes;
     private Color[][] plateauHexColors;
-    public Case[][] plateauUnites;
+    public Case[][] plateauCases;
+    public Unite[][] plateauUnites;
 
     public Plateau(int plateauLignes, int plateauColonnes) {
         this.plateauLignes = plateauLignes;
         this.plateauColonnes = plateauColonnes;
         this.plateauHexColors = new Color[plateauLignes][plateauColonnes];
+
+        this.plateauUnites = null;
         
         assignRandomColors();
 
@@ -70,6 +73,11 @@ public class Plateau extends JPanel implements MouseListener {
         int col = (int) (x / (30 * 2));
         int row = (int) ((y - (col % 2) * 30) / (30 * 2));
 
+        System.out.println("Case cliquée : "+col+ ", "+row);
+
+        //Case casecliquee=plateauObtenirCase(row,col);
+
+        //System.out.println(casecliquee.getCaseType());
 
 
         // Set the color of the clicked hexagon to a chosen color
@@ -125,4 +133,11 @@ public class Plateau extends JPanel implements MouseListener {
                 return Color.GRAY;
         }
     }
+
+    public Case plateauObtenirCase(int x, int y) {
+        Case tuile=this.plateauCases[x][y];
+        return tuile;
+    }
+
+
 }
