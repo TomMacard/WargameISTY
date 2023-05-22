@@ -7,16 +7,16 @@ import java.awt.event.*;
 import java.util.Random;
 
 public class Plateau extends JPanel implements MouseListener {
-    private int rows;
-    private int columns;
-    private int hexSize;
-    private Color[][] hexColors;
+    private int plateauLignes;
+    private int plateauColonnes;
+    private Color[][] plateauHexColors;
+    public Case[][] plateauUnites;
 
-    public Plateau(int rows, int columns, int hexSize) {
-        this.rows = rows;
-        this.columns = columns;
-        this.hexSize = hexSize;
-        this.hexColors = new Color[rows][columns];
+    public Plateau(int plateauLignes, int plateauColonnes) {
+        this.plateauLignes = plateauLignes;
+        this.plateauColonnes = plateauColonnes;
+        this.plateauHexColors = new Color[plateauLignes][plateauColonnes];
+        
         assignRandomColors();
 
         addMouseListener(this);
@@ -29,13 +29,13 @@ public class Plateau extends JPanel implements MouseListener {
         int startX = 0;  // Adjust these values to position the hexagonal field
         int startY = 0;
 
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < columns; col++) {
-                int x = startX + col * hexSize * 2;
-                int y = startY + row * hexSize * 2 + (col % 2) * hexSize;
+        for (int row = 0; row < plateauLignes; row++) {
+            for (int col = 0; col < plateauColonnes; col++) {
+                int x = startX + col * 30 * 2;
+                int y = startY + row * 30 * 2 + (col % 2) * 30;
 
-                Color color = hexColors[row][col] != null ? hexColors[row][col] : Color.WHITE;
-                drawHexagon(g, x, y, hexSize, color);
+                Color color = plateauHexColors[row][col] != null ? plateauHexColors[row][col] : Color.WHITE;
+                drawHexagon(g, x, y, 30, color);
             }
         }
     }
@@ -53,8 +53,8 @@ public class Plateau extends JPanel implements MouseListener {
 
     @Override
     public Dimension getPreferredSize() {
-        int width = columns * hexSize * 2 + hexSize * 2;
-        int height = rows * hexSize * 2 + hexSize;
+        int width = plateauColonnes * 30 * 2 + 30 * 2;
+        int height = plateauLignes * 30 * 2 + 30;
 
         return new Dimension(width, height);
     }
@@ -66,9 +66,11 @@ public class Plateau extends JPanel implements MouseListener {
 
         // Determine which hexagon was clicked based on the mouse coordinates
         // Perform any desired actions or update the hexagon state accordingly
-        // For example, you can calculate the row and column based on the hexSize and coordinates
-        int col = (int) (x / (hexSize * 2));
-        int row = (int) ((y - (col % 2) * hexSize) / (hexSize * 2));
+        // For example, you can calculate the row and column based on the 30 and coordinates
+        int col = (int) (x / (30 * 2));
+        int row = (int) ((y - (col % 2) * 30) / (30 * 2));
+
+
 
         // Set the color of the clicked hexagon to a chosen color
         setHexagonColor(row, col, Color.RED);
@@ -79,8 +81,8 @@ public class Plateau extends JPanel implements MouseListener {
 
     // Function to set the color of a hexagon at specified coordinates
     public void setHexagonColor(int row, int col, Color color) {
-        if (row >= 0 && row < rows && col >= 0 && col < columns) {
-            hexColors[row][col] = color;
+        if (row >= 0 && row < plateauLignes && col >= 0 && col < plateauColonnes) {
+            plateauHexColors[row][col] = color;
         }
     }
 
@@ -99,10 +101,10 @@ public class Plateau extends JPanel implements MouseListener {
     private void assignRandomColors() {
         Random random = new Random();
 
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < columns; col++) {
+        for (int row = 0; row < plateauLignes; row++) {
+            for (int col = 0; col < plateauColonnes; col++) {
                 int colorIndex = random.nextInt(5); // Randomly choose an index from 0 to 4
-                hexColors[row][col] = getColorByIndex(colorIndex);
+                plateauHexColors[row][col] = getColorByIndex(colorIndex);
             }
         }
     }
@@ -110,9 +112,9 @@ public class Plateau extends JPanel implements MouseListener {
     private Color getColorByIndex(int index) {
         switch (index) {
             case 0:
-                return Color.DARK_GRAY;
+                return Color.LIGHT_GRAY;
             case 1:
-                return Color.BLUE;
+                return Color.CYAN;
             case 2:
                 return Color.GREEN;
             case 3:
