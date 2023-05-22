@@ -72,7 +72,7 @@ public class MenuPrincipal extends JPanel implements ActionListener {
 
         BufferedImage imagefond = null;
         try {
-            imagefond = ImageIO.read(new File("C:/Users/Lenovo/Downloads/WARGAME/WargameISTY/src/images/arpl.jpg"));
+            imagefond = ImageIO.read(new File("src/images/arpl.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(-1);
@@ -84,6 +84,7 @@ public class MenuPrincipal extends JPanel implements ActionListener {
                 return new Dimension(1400, 850);
             }
         };
+
         SpringLayout sl_panel = new SpringLayout();
         panel.setLayout(sl_panel);
         panel.setAlignmentY(Component.CENTER_ALIGNMENT);

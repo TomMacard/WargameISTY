@@ -170,6 +170,9 @@ public class NouvellePartieInterface extends JPanel {
 
 package Vue;
 
+import Model.Plateau;
+import Model.VariablesGlobales;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -298,9 +301,9 @@ public class NouvellePartieInterface extends JPanel {
     }
 
     private void createChampHexagones() {
-        ChampHexagones champHexagones = new ChampHexagones(10, 10, 30); // Remplacez les valeurs 10 par les valeurs réelles souhaitées
+        Plateau plateau = new Plateau(VariablesGlobales.X_MAX, VariablesGlobales.Y_MAX);
         JPanel champHexagonesPanel = new JPanel();
-        champHexagonesPanel.add(champHexagones);
+        champHexagonesPanel.add(plateau);
         champHexagonesPanel.add(boutonRetour);
 
         cardPanel.add(champHexagonesPanel, "champ_hexagones");
