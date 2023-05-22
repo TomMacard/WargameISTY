@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
+import java.util.HashMap;
 
 public class Plateau extends JPanel implements MouseListener {
     private int plateauLignes;
@@ -12,6 +13,8 @@ public class Plateau extends JPanel implements MouseListener {
     private Color[][] plateauHexColors;
     public Case[][] plateauCases;
     public Unite[][] plateauUnites;
+    private HashMap<Color, Image> colorToImage;
+
 
     public Plateau(int plateauLignes, int plateauColonnes) {
         this.plateauLignes = plateauLignes;
@@ -19,6 +22,14 @@ public class Plateau extends JPanel implements MouseListener {
         this.plateauHexColors = new Color[plateauLignes][plateauColonnes];
 
         this.plateauUnites = null;
+
+        colorToImage = new HashMap<>();
+        colorToImage.put(Color.LIGHT_GRAY, new ImageIcon("C:/Users/Lenovo/Downloads/WARGAME/WargameISTY/src/images/foret3.png").getImage());
+        colorToImage.put(Color.CYAN, new ImageIcon("C:/Users/Lenovo/Downloads/WARGAME/WargameISTY/src/images/riviere3.png").getImage());
+        colorToImage.put(Color.GREEN, new ImageIcon("C:/Users/Lenovo/Downloads/WARGAME/WargameISTY/src/images/montagne3.png").getImage());
+        colorToImage.put(Color.YELLOW, new ImageIcon("C:/Users/Lenovo/Downloads/WARGAME/WargameISTY/src/images/desert3.png").getImage());
+        colorToImage.put(Color.GREEN.darker(), new ImageIcon("C:/Users/Lenovo/Downloads/WARGAME/WargameISTY/src/images/plaine3.png").getImage());
+        colorToImage.put(Color.GRAY, new ImageIcon("C:/Users/Lenovo/Downloads/WARGAME/WargameISTY/src/images/foret31.png").getImage());
         
         assignRandomColors();
 
@@ -29,7 +40,7 @@ public class Plateau extends JPanel implements MouseListener {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        int startX = 0;  // Adjust these values to position the hexagonal field
+        int startX = -380;  // Adjust these values to position the hexagonal field
         int startY = 0;
 
         for (int row = 0; row < plateauLignes; row++) {
@@ -37,22 +48,27 @@ public class Plateau extends JPanel implements MouseListener {
                 int x = startX + col * 30 * 2;
                 int y = startY + row * 30 * 2 + (col % 2) * 30;
 
-                Color color = plateauHexColors[row][col] != null ? plateauHexColors[row][col] : Color.WHITE;
-                drawHexagon(g, x, y, 30, color);
+                Image image = colorToImage.get(plateauHexColors[row][col]);
+                drawHexagon(g, x, y, 30, image);
             }
         }
     }
 
-    private void drawHexagon(Graphics g, int x, int y, int size, Color color) {
+    private void drawHexagon(Graphics g, int x, int y, int size, Image image) {
         int[] xPoints = {x, x + size, x + size + size, x + size, x, x - size};
         int[] yPoints = {y, y, y + size, y + size + size, y + size + size, y + size};
         int numPoints = 6;
 
-        g.setColor(color);
-        g.fillPolygon(xPoints, yPoints, numPoints);
+        int imageX = x-30 ;  // Adjust these values as necessary
+        int imageY = y ;
+
+        g.drawImage(image, imageX, imageY, size*3, size*2, this);
+
         g.setColor(Color.BLACK);
         g.drawPolygon(xPoints, yPoints, numPoints);
     }
+
+
 
     @Override
     public Dimension getPreferredSize() {
@@ -64,7 +80,7 @@ public class Plateau extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        int x = e.getX();
+        int x = e.getX()-380;
         int y = e.getY();
 
         // Determine which hexagon was clicked based on the mouse coordinates

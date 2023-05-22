@@ -9,6 +9,6 @@ public class caseMontagne extends Case{
 
     private static final Color couleur = Color.DARK_GRAY;
     public caseMontagne( boolean traversable, int x, int y) {
-        super(type, coutDeplacement, defense, traversable, x, y, couleur);
+        super( type, coutDeplacement, defense, traversable, x, y, couleur);
     }
 }

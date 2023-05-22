@@ -11,6 +11,6 @@ public class casePlat extends Case{
 
     private static final Color couleur = Color.GREEN;
     public casePlat( boolean traversable, int x, int y) {
-        super(type, coutDeplacement, defense, traversable, x, y, couleur);
+        super( type, coutDeplacement, defense, traversable, x, y, couleur);
     }
 }

@@ -144,12 +144,12 @@ public class Unite {
         // Effectuer l'attaque
         int potentielAttaque = attaquant.getUnitePotAttaque();
         int pvCourant = cible.getUnitePVCourant();
-        Case caseCible= cible.unitePlateauCase(plateau);
-        int bonusDefense= caseCible.getCaseDefense();
+        Case caseCible = cible.unitePlateauCase(plateau);
+        int bonusDefense = caseCible.getCaseDefense();
 
         // Réduire le potentiel de défense de la cible en fonction du potentiel d'attaque de l'attaquant
-        pvCourant -= (potentielAttaque*bonusDefense)/100;
-        int resultat = (int) pvCourant ;
+        pvCourant -= (potentielAttaque * bonusDefense) / 100;
+        int resultat = (int) pvCourant;
 
         // Si le potentiel de défense est négatif ou nul, la cible est détruite
         if (pvCourant <= 0) {
@@ -159,13 +159,10 @@ public class Unite {
             }
             // Supprimer l'unité du plateau
             if (plateau != null) {
-                plateau.plateauUnites[cible.uniteX][cible.uniteY]=(null);
+                plateau.plateauUnites[cible.uniteX][cible.uniteY] = (null);
             }
         } else {
             cible.setUnitePVCourant(pvCourant);
         }
     }
-
-
-
 }

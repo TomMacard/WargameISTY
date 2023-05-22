@@ -10,6 +10,6 @@ public class caseDesert extends Case{
 
     private static final Color couleur = Color.YELLOW;
     public caseDesert( boolean traversable, int x, int y) {
-        super(type, coutDeplacement, defense, traversable, x, y, couleur);
+        super( type, coutDeplacement, defense, traversable, x, y, couleur);
     }
 }
