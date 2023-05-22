@@ -1,5 +1,7 @@
 package Model;
 
+import java.awt.*;
+
 public class Case {
     private String caseNom;
     private int caseCoutDeplacement;
@@ -8,6 +10,7 @@ public class Case {
     private int caseX;
     private int caseY;
     private boolean caseImage;
+    private Color couleur;
 
     public Case(String nom, int coutDeplacement, int defense, boolean traversable, int x, int y, boolean image) {
         this.caseNom = nom;
