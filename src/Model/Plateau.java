@@ -1,5 +1,6 @@
 package Model;
 import Model.VariablesGlobales;
+import Vue.MenuPrincipal;
 import Vue.NouvellePartieInterface;
 
 import javax.swing.*;
@@ -33,7 +34,7 @@ public class Plateau extends JPanel implements MouseListener {
         assignRandomColors();
 
         plateauAttributionCases();
-        //plateauAttributionUnites(jeu);
+        //plateauAttributionUnites(MenuPrincipal.n);
 
         addMouseListener(this);
     }
@@ -91,8 +92,13 @@ public class Plateau extends JPanel implements MouseListener {
         if (col < VariablesGlobales.Y_MAX && lig < VariablesGlobales.X_MAX) {
             System.out.println("Case cliquée : "+col+ ", "+lig);
             Case casecliquee = plateauObtenirCase(lig,col);
+            Unite unitecliquee =plateauObtenirUnite(lig,col);
             if (casecliquee != null) {
                 System.out.println(casecliquee.getCaseType());
+            }
+            if (unitecliquee != null) {
+                System.out.println("Nom Unité : "+unitecliquee.getUniteType());
+                System.out.println("Nom Joueur : "+unitecliquee.getUniteJoueur().getJoueurNom());
             }
 
 
@@ -155,6 +161,12 @@ public class Plateau extends JPanel implements MouseListener {
         return tuile;
     }
 
+    public Unite plateauObtenirUnite(int x, int y) {
+
+        Unite unite=this.plateauUnites[x][y];
+        return unite;
+    }
+
     public void plateauAttributionCases() {
         for (int lig = 0; lig < plateauLignes; lig++) {
             for (int col = 0; col < plateauColonnes; col++) {
@@ -178,8 +190,8 @@ public class Plateau extends JPanel implements MouseListener {
         }
     }
 
-    public void plateauAttributionUnites(Jeu jeu) {
-        List<Joueur> joueurs = jeu.getJeuJoueurs();
+    public void plateauAttributionUnites(List<Joueur> joueurs) {
+
         if (joueurs.size()==2) {
             this.plateauUnites[0][0] = new uniteBassem(0,0, joueurs.get(0));
             this.plateauUnites[1][0] = new uniteTom(1,0, joueurs.get(0));
