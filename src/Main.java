@@ -10,7 +10,6 @@ public class Main {
     /////// Fonction qui reprend une ancienne parite/////////
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 

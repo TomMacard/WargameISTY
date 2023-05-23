@@ -72,7 +72,7 @@ public class MenuPrincipal extends JPanel implements ActionListener {
 
         BufferedImage imagefond = null;
         try {
-            imagefond = ImageIO.read(new File("src/images/arpl.jpg"));
+            imagefond = ImageIO.read(new File("src/images/arpl.png"));
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(-1);
@@ -146,17 +146,17 @@ public class MenuPrincipal extends JPanel implements ActionListener {
         quitterButton.setContentAreaFilled(false);
         panel.add(quitterButton);
 
-        sl_panel.putConstraint(SpringLayout.NORTH, nouvellePartieButton, 433, SpringLayout.NORTH, panel);
+        sl_panel.putConstraint(SpringLayout.NORTH, nouvellePartieButton, 416, SpringLayout.NORTH, panel);
         sl_panel.putConstraint(SpringLayout.WEST, nouvellePartieButton, 440, SpringLayout.WEST, panel);
 
         sl_panel.putConstraint(SpringLayout.WEST, reprendrePartieButton, 0, SpringLayout.WEST, nouvellePartieButton);
-        sl_panel.putConstraint(SpringLayout.SOUTH, reprendrePartieButton, 151, SpringLayout.NORTH, nouvellePartieButton);
+        sl_panel.putConstraint(SpringLayout.SOUTH, reprendrePartieButton, 160, SpringLayout.NORTH, nouvellePartieButton);
 
         sl_panel.putConstraint(SpringLayout.WEST, aideButton, 0, SpringLayout.WEST, reprendrePartieButton);
-        sl_panel.putConstraint(SpringLayout.SOUTH, aideButton, 145, SpringLayout.NORTH, reprendrePartieButton);
+        sl_panel.putConstraint(SpringLayout.SOUTH, aideButton, 155, SpringLayout.NORTH, reprendrePartieButton);
 
         sl_panel.putConstraint(SpringLayout.WEST, quitterButton, 0, SpringLayout.WEST, aideButton);
-        sl_panel.putConstraint(SpringLayout.SOUTH, quitterButton, 146, SpringLayout.NORTH, aideButton);
+        sl_panel.putConstraint(SpringLayout.SOUTH, quitterButton, 156, SpringLayout.NORTH, aideButton);
 
         // Ajout de l'écouteur d'événements pour les boutons
         nouvellePartieButton.addActionListener(e -> System.out.println("Nouvelle partie"));
