@@ -84,6 +84,7 @@ public class MenuPrincipal extends JPanel implements ActionListener {
                 return new Dimension(1400, 850);
             }
         };
+
         SpringLayout sl_panel = new SpringLayout();
         panel.setLayout(sl_panel);
         panel.setAlignmentY(Component.CENTER_ALIGNMENT);
@@ -172,9 +173,11 @@ public class MenuPrincipal extends JPanel implements ActionListener {
                 return new Dimension(1400, 850);
             }
         };
+
         add(cardPanel, BorderLayout.CENTER);
         aideInterface = new AideInterface(cardLayout, cardPanel);
         nouvellePartieInterface = new NouvellePartieInterface(cardLayout, cardPanel, application);
+
         nouvellePartieInterface.setApplication(application); // Ajoutez cette ligne pour définir l'instance d'Application
         //cardPanel.add(nouvellePartieInterface, NouvellePartieInterface_PANEL);
         nouvellePartieInterface.setApplication(this.application);
