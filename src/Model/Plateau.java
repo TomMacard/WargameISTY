@@ -20,18 +20,21 @@ public class Plateau extends JPanel implements MouseListener {
         this.plateauLignes = plateauLignes;
         this.plateauColonnes = plateauColonnes;
         this.plateauHexColors = new Color[plateauLignes][plateauColonnes];
+        this.plateauCases = new Case[plateauLignes][plateauColonnes];
 
         this.plateauUnites = null;
 
         colorToImage = new HashMap<>();
-        colorToImage.put(Color.LIGHT_GRAY, new ImageIcon("C:/Users/Lenovo/Downloads/WARGAME/WargameISTY/src/images/foret3.png").getImage());
-        colorToImage.put(Color.CYAN, new ImageIcon("C:/Users/Lenovo/Downloads/WARGAME/WargameISTY/src/images/riviere3.png").getImage());
-        colorToImage.put(Color.GREEN, new ImageIcon("C:/Users/Lenovo/Downloads/WARGAME/WargameISTY/src/images/montagne3.png").getImage());
-        colorToImage.put(Color.YELLOW, new ImageIcon("C:/Users/Lenovo/Downloads/WARGAME/WargameISTY/src/images/desert3.png").getImage());
-        colorToImage.put(Color.GREEN.darker(), new ImageIcon("C:/Users/Lenovo/Downloads/WARGAME/WargameISTY/src/images/plaine3.png").getImage());
-        colorToImage.put(Color.GRAY, new ImageIcon("C:/Users/Lenovo/Downloads/WARGAME/WargameISTY/src/images/foret31.png").getImage());
+        colorToImage.put(Color.RED, new ImageIcon("src/images/foret3.png").getImage());
+        colorToImage.put(Color.BLUE, new ImageIcon("src/images/riviere3.png").getImage());
+        colorToImage.put(Color.DARK_GRAY, new ImageIcon("src/images/montagne3.png").getImage());
+        colorToImage.put(Color.YELLOW, new ImageIcon("src/images/desert3.png").getImage());
+        colorToImage.put(Color.GREEN, new ImageIcon("src/images/plaine3.png").getImage());
+        //colorToImage.put(Color.RED, new ImageIcon("src/images/foret31.png").getImage());
         
         assignRandomColors();
+
+        plateauAttributionCases();
 
         addMouseListener(this);
     }
@@ -40,7 +43,7 @@ public class Plateau extends JPanel implements MouseListener {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        int startX = -380;  // Adjust these values to position the hexagonal field
+        int startX = -VariablesGlobales.DECALAGE;  // Adjust these values to position the hexagonal field
         int startY = 0;
 
         for (int row = 0; row < plateauLignes; row++) {
@@ -64,15 +67,15 @@ public class Plateau extends JPanel implements MouseListener {
 
         g.drawImage(image, imageX, imageY, size*3, size*2, this);
 
-        g.setColor(Color.BLACK);
-        g.drawPolygon(xPoints, yPoints, numPoints);
+        //g.setColor(Color.BLACK);
+        //g.drawPolygon(xPoints, yPoints, numPoints);
     }
 
 
 
     @Override
     public Dimension getPreferredSize() {
-        int width = plateauColonnes * 30 * 2 + 30 * 2;
+        int width = plateauColonnes * 41 * 2 + 30 * 2;
         int height = plateauLignes * 30 * 2 + 30;
 
         return new Dimension(width, height);
@@ -80,7 +83,7 @@ public class Plateau extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        int x = e.getX()-380;
+        int x = e.getX()-VariablesGlobales.DECALAGE;
         int y = e.getY();
 
         // Determine which hexagon was clicked based on the mouse coordinates
@@ -89,15 +92,26 @@ public class Plateau extends JPanel implements MouseListener {
         int col = (int) (x / (30 * 2));
         int row = (int) ((y - (col % 2) * 30) / (30 * 2));
 
-        System.out.println("Case cliquée : "+col+ ", "+row);
+        if (col < VariablesGlobales.Y_MAX && row < VariablesGlobales.X_MAX) {
+            System.out.println("Case cliquée : "+col+ ", "+row);
 
-        //Case casecliquee=plateauObtenirCase(row,col);
+            Color clickedColor = plateauHexColors[row][col];
+            System.out.println("Couleur: " + clickedColor);
 
-        //System.out.println(casecliquee.getCaseType());
+            Case casecliquee = plateauObtenirCase(row,col);
+
+            if (casecliquee != null) {
+                System.out.println(casecliquee.getCaseType());
+            }
+
+
+        }
+
+
 
 
         // Set the color of the clicked hexagon to a chosen color
-        setHexagonColor(row, col, Color.RED);
+        //setHexagonColor(row, col, Color.BLACK);
 
         // Repaint the panel to reflect the updated color
         repaint();
@@ -136,23 +150,51 @@ public class Plateau extends JPanel implements MouseListener {
     private Color getColorByIndex(int index) {
         switch (index) {
             case 0:
-                return Color.LIGHT_GRAY;
+                return Color.DARK_GRAY;
             case 1:
-                return Color.CYAN;
+                return Color.BLUE;
             case 2:
                 return Color.GREEN;
             case 3:
                 return Color.YELLOW;
             case 4:
-                return Color.GREEN.darker();
+                return Color.RED;
             default:
                 return Color.GRAY;
         }
     }
 
     public Case plateauObtenirCase(int x, int y) {
+
         Case tuile=this.plateauCases[x][y];
         return tuile;
+    }
+
+    public void plateauAttributionCases() {
+        for (int row = 0; row < plateauLignes; row++) {
+            for (int col = 0; col < plateauColonnes; col++) {
+                Color couleur = this.plateauHexColors[row][col];
+                if (couleur==Color.YELLOW) {
+                    this.plateauCases[row][col]= new caseDesert(true,row,col);
+                }
+                else if (couleur==Color.GREEN) {
+                    this.plateauCases[row][col]= new casePlat(true,row,col);
+                }
+                else if (couleur==Color.DARK_GRAY) {
+                    this.plateauCases[row][col]= new caseMontagne(true,row,col);
+                }
+                else if (couleur==Color.BLUE) {
+                    this.plateauCases[row][col]= new caseMer(false,row,col);
+                }
+                else if (couleur==Color.RED) {
+                    this.plateauCases[row][col]= new caseForet(true,row,col);
+                }
+
+
+
+
+            }
+        }
     }
 
 
