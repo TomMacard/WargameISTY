@@ -11,6 +11,7 @@ import java.util.Random;
 import java.util.HashMap;
 
 public class Plateau extends JPanel implements MouseListener {
+    private NouvellePartieInterface nouvellePartieInterface;
     private int plateauLignes;
     private int plateauColonnes;
     private Color[][] plateauHexColors;
@@ -18,7 +19,7 @@ public class Plateau extends JPanel implements MouseListener {
     public Unite[][] plateauUnites;
     private HashMap<Color, Image> colorToImage;
 
-    public Plateau(int plateauLignes, int plateauColonnes) {
+    public Plateau(int plateauLignes, int plateauColonnes, NouvellePartieInterface nouvellePartieInterface) {
         this.plateauLignes = plateauLignes;
         this.plateauColonnes = plateauColonnes;
         this.plateauHexColors = new Color[plateauLignes][plateauColonnes];
@@ -30,11 +31,12 @@ public class Plateau extends JPanel implements MouseListener {
         colorToImage.put(Color.DARK_GRAY, new ImageIcon("src/images/montagne.png").getImage());
         colorToImage.put(Color.YELLOW, new ImageIcon("src/images/desert.png").getImage());
         colorToImage.put(Color.GREEN, new ImageIcon("src/images/plaine.png").getImage());
+        this.nouvellePartieInterface = nouvellePartieInterface;
         
         assignRandomColors();
 
         plateauAttributionCases();
-        //plateauAttributionUnites(MenuPrincipal.n);
+        plateauAttributionUnites(nouvellePartieInterface.getJoueurs());
 
         addMouseListener(this);
     }

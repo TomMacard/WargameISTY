@@ -170,7 +170,7 @@ public class NouvellePartieInterface extends JPanel {
     }
 
     private void createChampHexagones() {
-        Plateau plateau = new Plateau(VariablesGlobales.X_MAX, VariablesGlobales.Y_MAX);
+        Plateau plateau = new Plateau(VariablesGlobales.X_MAX, VariablesGlobales.Y_MAX, this);
         JPanel champHexagonesPanel = new JPanel();
         champHexagonesPanel.add(plateau);
         champHexagonesPanel.add(boutonRetour);
