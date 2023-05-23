@@ -17,7 +17,6 @@ public class Plateau extends JPanel implements MouseListener {
     public Unite[][] plateauUnites;
     private HashMap<Color, Image> colorToImage;
 
-
     public Plateau(int plateauLignes, int plateauColonnes) {
         this.plateauLignes = plateauLignes;
         this.plateauColonnes = plateauColonnes;
@@ -30,12 +29,11 @@ public class Plateau extends JPanel implements MouseListener {
         colorToImage.put(Color.DARK_GRAY, new ImageIcon("src/images/montagne.png").getImage());
         colorToImage.put(Color.YELLOW, new ImageIcon("src/images/desert.png").getImage());
         colorToImage.put(Color.GREEN, new ImageIcon("src/images/plaine.png").getImage());
-        //colorToImage.put(Color.RED, new ImageIcon("src/images/foret31.png").getImage());
         
         assignRandomColors();
 
         plateauAttributionCases();
-        plateauAttributionUnites(2);
+        //plateauAttributionUnites(jeu);
 
         addMouseListener(this);
     }
@@ -185,7 +183,30 @@ public class Plateau extends JPanel implements MouseListener {
         if (joueurs.size()==2) {
             this.plateauUnites[0][0] = new uniteBassem(0,0, joueurs.get(0));
             this.plateauUnites[1][0] = new uniteTom(1,0, joueurs.get(0));
-            this.plateauUnites[1][0] = new uniteMostafa(0,1, joueurs.get(0));
+            this.plateauUnites[0][1] = new uniteMostafa(0,1, joueurs.get(0));
+            this.plateauUnites[1][1] = new uniteDhia(0,1, joueurs.get(0));
+            this.plateauUnites[1][2] = new uniteFadi(0,1, joueurs.get(0));
+            /*
+            this.plateauUnites[0][0] = new uniteBassem(0,0, joueurs.get(1));
+            this.plateauUnites[1][0] = new uniteTom(1,0, joueurs.get(1));
+            this.plateauUnites[1][0] = new uniteMostafa(0,1, joueurs.get(1));
+            this.plateauUnites[1][0] = new uniteDhia(0,1, joueurs.get(1));
+            this.plateauUnites[1][0] = new uniteFadi(0,1, joueurs.get(1));
+             */
+        }
+        if (joueurs.size()==3) {
+            this.plateauUnites[0][0] = new uniteBassem(0, 0, joueurs.get(2));
+            this.plateauUnites[1][0] = new uniteTom(1, 0, joueurs.get(2));
+            this.plateauUnites[1][0] = new uniteMostafa(0, 1, joueurs.get(2));
+            this.plateauUnites[1][0] = new uniteDhia(0, 1, joueurs.get(2));
+            this.plateauUnites[1][0] = new uniteFadi(0, 1, joueurs.get(2));
+        }
+        if (joueurs.size()==4) {
+            this.plateauUnites[0][0] = new uniteBassem(0, 0, joueurs.get(3));
+            this.plateauUnites[1][0] = new uniteTom(1, 0, joueurs.get(3));
+            this.plateauUnites[1][0] = new uniteMostafa(0, 1, joueurs.get(3));
+            this.plateauUnites[1][0] = new uniteDhia(0, 1, joueurs.get(3));
+            this.plateauUnites[1][0] = new uniteFadi(0, 1, joueurs.get(3));
         }
     }
 
