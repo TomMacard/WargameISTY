@@ -138,7 +138,7 @@ public class MenuPrincipal extends JPanel implements ActionListener {
         quitterButton.setBounds(300,200,400,90);
         quitterButton.setBorder(new RoundBtn(25));
         quitterButton.setPreferredSize(new Dimension(540, 52));
-        quitterButton.setBackground(new Color(155, 0, 0));
+        quitterButton.setBackground(new Color(30, 31, 34));
         quitterButton.setForeground(Color.BLACK);
         quitterButton.setFont(new Font("Arial", Font.BOLD, 20));
         quitterButton.setAlignmentX(Component.CENTER_ALIGNMENT);
