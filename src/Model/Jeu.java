@@ -7,10 +7,8 @@ public class Jeu {
     private List<Joueur> jeuJoueurs;
     private List<Unite> jeuUnites;
 
-    public Jeu(Plateau plateau, List<Joueur> joueurs, List<Unite> unites) {
-        this.jeuPlateau = plateau;
+    public Jeu(List<Joueur> joueurs) {
         this.jeuJoueurs = joueurs;
-        this.jeuUnites = unites;
     }
 
     // Getters

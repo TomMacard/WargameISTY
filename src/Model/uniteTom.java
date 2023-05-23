@@ -11,7 +11,7 @@ public class uniteTom extends Unite{
     private static final String type = "TOM";
 
 
-    public uniteTom( int x, int y, int PVcourant, Joueur uniteJoueur) {
-        super( Attaque, Defense, PVmax, Deplacement, vision, portee, x, y, PVcourant, type, uniteJoueur);
+    public uniteTom( int x, int y, Joueur uniteJoueur) {
+        super( Attaque, Defense, PVmax, Deplacement, vision, portee, x, y, PVmax, type, uniteJoueur);
     }
 }
