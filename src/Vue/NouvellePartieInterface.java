@@ -198,23 +198,6 @@ public class NouvellePartieInterface extends JPanel {
 
     }
 
-    /*private void creerChampsNomJoueurs() {
-        supprimerTousChampsNomJoueurs();
-
-        JPanel panneauNomJoueurs = new JPanel(new GridLayout(nombreJoueurs, 1));
-
-        for (int i = 1; i <= nombreJoueurs; i++) {
-            JLabel label = new JLabel("Joueur " + i + ":");
-            JTextField textField = new JTextField();
-            textField.setPreferredSize(new Dimension(260, 48));
-
-            JPanel panneauTextField = new JPanel(new FlowLayout(FlowLayout.CENTER));
-            panneauTextField.add(label);
-            panneauTextField.add(textField);
-
-            panneauNomJoueurs.add(panneauTextField);
-        }*/
-
     private void creerChampsNomJoueurs() {
         supprimerTousChampsNomJoueurs();
 

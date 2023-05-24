@@ -1,10 +1,13 @@
 package Controleurs;
 
 import Model.Tour;
-
-import javax.swing.JButton;
+import Vue.MenuPrincipal;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+
 
 public class fonctions_de_traitements {
 
@@ -19,5 +22,19 @@ public class fonctions_de_traitements {
                 System.out.println("Numéro tour : " + tour.getTourActuel());
             }
         });
+
+        Dimension size = new Dimension(1400, 830);
+        MenuPrincipal menuPrincipal = new MenuPrincipal();
+        menuPrincipal.setBorder(BorderFactory.createEmptyBorder());
+        menuPrincipal.setApplication(null);
+        JFrame frame = new JFrame("Wargame");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.setLayout(new BorderLayout());
+        frame.add(menuPrincipal, BorderLayout.CENTER);
+        frame.pack();
+        frame.setSize(size);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
 }

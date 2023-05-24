@@ -1,5 +1,7 @@
 package Vue;
 
+import Controleurs.MenuPrincipalController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -23,6 +25,7 @@ import javax.swing.SwingConstants;
 
 
 
+
 public class MenuPrincipal extends JPanel implements ActionListener {
 
 
@@ -38,6 +41,8 @@ public class MenuPrincipal extends JPanel implements ActionListener {
     private AideInterface aideInterface;
     private NouvellePartieInterface nouvellePartieInterface;
     private Application application;
+    private MenuPrincipalController controller;
+
 
 
 
@@ -195,16 +200,16 @@ public class MenuPrincipal extends JPanel implements ActionListener {
 
         menuPanel.add(panel);
         cardPanel.add(menuPanel, MENU_PRINCIPAL);
+    }
 
-
-
+    public void setController(MenuPrincipalController controller) {
+        this.controller = controller;
     }
 
     public void setApplication(Application application) {
         this.application = application;
         nouvellePartieInterface.setApplication(application); // Ajoutez cette ligne pour définir l'instance de Application dans NouvellePartieInterface
     }
-
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == nouvellePartieButton) {
