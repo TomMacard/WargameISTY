@@ -165,4 +165,31 @@ public class Unite {
             cible.setUnitePVCourant(pvCourant);
         }
     }
+
+
+    public void UniteDeplacementElementaire( int destinationX, int destinationY, Plateau plateau) {
+        int uniteX = this.getUniteX();
+        int uniteY = this.getUniteY();
+
+        Case caseDestination = plateau.plateauCases[destinationX][destinationY] ;
+
+        Unite unitedepart=  plateau.plateauUnites[uniteX][uniteY];
+        Unite uniteDestination = plateau.plateauUnites[destinationX][destinationY];
+
+        if (caseDestination != null && uniteDestination.getUniteJoueur()!=this.getUniteJoueur()){
+            attaqueEtDefense(unitedepart, uniteDestination,plateau);}
+        else if (caseDestination != null && uniteDestination.getUniteJoueur()==this.getUniteJoueur() ){
+            System.out.println("deplacement impossible: il y'a votre unité sur cette case");
+        }
+        else {
+
+            setUniteX(destinationX);
+            setUniteY(destinationY);
+        }
+
+    }
+
+
+
+
 }
