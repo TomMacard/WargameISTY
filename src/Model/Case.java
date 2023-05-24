@@ -78,4 +78,37 @@ public class Case {
     public void setCaseCouleur(Color caseCouleur) {
         this.caseCouleur = caseCouleur;
     }
+
+    public void caseVoisins(Case casecliquee) {
+
+        int x = casecliquee.getCaseX();
+        int y = casecliquee.getCaseY();
+        // Check and highlight the left neighbor
+        if (x - 1 >= 0) {
+            // Highlight the left neighbor tile
+        }
+        // Check and highlight the right neighbor
+        if (x + 1 < VariablesGlobales.X_MAX) {
+            // Highlight the right neighbor tile
+        }
+        // Check and highlight the top-left and top-right neighbors
+        if (y % 2 == 0) {
+            if (y - 1 >= 0 && x - 1 >= 0) {
+                // Highlight the top-left neighbor tile
+            }
+            if (y - 1 >= 0 && x + 1 < VariablesGlobales.X_MAX) {
+                // Highlight the top-right neighbor tile
+            }
+        } else {
+            // Check and highlight the bottom-left and bottom-right neighbors
+            if (y + 1 < VariablesGlobales.Y_MAX && x - 1 >= 0) {
+                // Highlight the bottom-left neighbor tile
+            }
+            if (y + 1 < VariablesGlobales.Y_MAX && x + 1 < VariablesGlobales.X_MAX) {
+                // Highlight the bottom-right neighbor tile
+            }
+        }
+    }
+
+
 }

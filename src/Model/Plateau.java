@@ -229,7 +229,7 @@ public class Plateau extends JPanel implements MouseListener {
     }
     //fonction qui pose et attribue les unités sur le plateau
     public void plateauAttributionUnites(List<Joueur> joueurs) {
-        if (joueurs.size()==2) {
+        if (joueurs.size()>=2) {
             this.plateauUnites[0][0] = new uniteBassem(0,0, joueurs.get(0));
             this.plateauUnites[1][0] = new uniteTom(1,0, joueurs.get(0));
             this.plateauUnites[0][1] = new uniteMostafa(0,1, joueurs.get(0));
@@ -241,21 +241,23 @@ public class Plateau extends JPanel implements MouseListener {
             this.plateauUnites[12][14] = new uniteMostafa(12,14, joueurs.get(1));
             this.plateauUnites[12][13] = new uniteDhia(12,13, joueurs.get(1));
             this.plateauUnites[11][14] = new uniteFadi(11,14, joueurs.get(1));
+
+            if (joueurs.size()>=3) {
+                this.plateauUnites[0][14] = new uniteBassem(0, 14, joueurs.get(2));
+                this.plateauUnites[0][15] = new uniteTom(0, 15, joueurs.get(2));
+                this.plateauUnites[1][14] = new uniteMostafa(1, 14, joueurs.get(2));
+                this.plateauUnites[0][13] = new uniteDhia(0, 13, joueurs.get(2));
+                this.plateauUnites[1][15] = new uniteFadi(1, 15, joueurs.get(2));
+            }
+            if (joueurs.size()==4) {
+                this.plateauUnites[12][0] = new uniteBassem(12, 0, joueurs.get(3));
+                this.plateauUnites[12][1] = new uniteTom(12, 1, joueurs.get(3));
+                this.plateauUnites[11][0] = new uniteMostafa(11, 0, joueurs.get(3));
+                this.plateauUnites[11][1] = new uniteDhia(11, 1, joueurs.get(3));
+                this.plateauUnites[12][2] = new uniteFadi(12, 2, joueurs.get(3));
+            }
         }
-        if (joueurs.size()>=3) {
-            this.plateauUnites[0][14] = new uniteBassem(0, 14, joueurs.get(2));
-            this.plateauUnites[0][15] = new uniteTom(0, 15, joueurs.get(2));
-            this.plateauUnites[1][14] = new uniteMostafa(1, 14, joueurs.get(2));
-            this.plateauUnites[0][13] = new uniteDhia(0, 13, joueurs.get(2));
-            this.plateauUnites[1][15] = new uniteFadi(1, 15, joueurs.get(2));
-        }
-        if (joueurs.size()==4) {
-            this.plateauUnites[12][0] = new uniteBassem(12, 0, joueurs.get(3));
-            this.plateauUnites[12][1] = new uniteTom(12, 1, joueurs.get(3));
-            this.plateauUnites[11][0] = new uniteMostafa(11, 0, joueurs.get(3));
-            this.plateauUnites[11][1] = new uniteDhia(11, 1, joueurs.get(3));
-            this.plateauUnites[12][2] = new uniteFadi(12, 2, joueurs.get(3));
-        }
+
     }
 
 
