@@ -158,7 +158,12 @@ public class NouvellePartieInterface extends JPanel {
         sl_panneauContenu.putConstraint(SpringLayout.NORTH, confirmerBouton, 20, SpringLayout.SOUTH, comboBox);
 
         sl_panneauContenu.putConstraint(SpringLayout.HORIZONTAL_CENTER, lancerJeuBouton, 0, SpringLayout.HORIZONTAL_CENTER, panneauContenu);
-        sl_panneauContenu.putConstraint(SpringLayout.NORTH, lancerJeuBouton, 400, SpringLayout.SOUTH, comboBox);
+        sl_panneauContenu.putConstraint(SpringLayout.NORTH, lancerJeuBouton, 628, SpringLayout.SOUTH, comboBox);
+        lancerJeuBouton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        lancerJeuBouton.setOpaque(false);
+        lancerJeuBouton.setContentAreaFilled(false);
+        lancerJeuBouton.setForeground(Color.BLACK);
+        lancerJeuBouton.setBorder(new RoundBtn(25));
 
         JPanel panneauBouton = new JPanel();
         panneauBouton.setLayout(new BorderLayout());
@@ -230,7 +235,7 @@ public class NouvellePartieInterface extends JPanel {
                 // Créer un nouveau JPanel pour les JTextField et le bouton lancerJeuBouton
                 JPanel textFieldPanel = new JPanel(new GridBagLayout());
                 textFieldPanel.setOpaque(false);
-                textFieldPanel.setBounds(0, 0, 1400, 830);  // Set the position and size to match the image
+                textFieldPanel.setBounds(0, 80, 1400, 830);  // Set the position and size to match the image
                 panneauPrincipal.add(textFieldPanel, JLayeredPane.POPUP_LAYER);  // Add this to a higher layer
 
                 add(panneauPrincipal, BorderLayout.CENTER);
