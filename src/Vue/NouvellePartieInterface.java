@@ -143,6 +143,14 @@ public class NouvellePartieInterface extends JPanel {
             }
         });
 
+
+        lancerJeuBouton.setBounds(635, 715, 1000, 600);
+        lancerJeuBouton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        lancerJeuBouton.setOpaque(false);
+        //lancerJeuBouton.setContentAreaFilled(false);
+        //lancerJeuBouton.setForeground(Color.BLACK);
+        lancerJeuBouton.setBorder(new RoundBtn(25));
+
         joueurs = new ArrayList<Joueur>();
 
         sl_panneauContenu.putConstraint(SpringLayout.HORIZONTAL_CENTER, titreLabel, 0, SpringLayout.HORIZONTAL_CENTER, panneauContenu);
@@ -158,7 +166,7 @@ public class NouvellePartieInterface extends JPanel {
         sl_panneauContenu.putConstraint(SpringLayout.NORTH, confirmerBouton, 20, SpringLayout.SOUTH, comboBox);
 
         sl_panneauContenu.putConstraint(SpringLayout.HORIZONTAL_CENTER, lancerJeuBouton, 0, SpringLayout.HORIZONTAL_CENTER, panneauContenu);
-        sl_panneauContenu.putConstraint(SpringLayout.NORTH, lancerJeuBouton, 400, SpringLayout.SOUTH, comboBox);
+        sl_panneauContenu.putConstraint(SpringLayout.NORTH, lancerJeuBouton, 610, SpringLayout.SOUTH, comboBox);
 
         JPanel panneauBouton = new JPanel();
         panneauBouton.setLayout(new BorderLayout());
@@ -173,43 +181,6 @@ public class NouvellePartieInterface extends JPanel {
             }
         });
 
-        /*confirmerBouton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Supprime l'image de fond précédente
-                panneauPrincipal.remove(background);
-                BufferedImage fiche2 = null;
-                try {
-                    fiche2 = ImageIO.read(new File("src/images/jdid.png"));
-                } catch (IOException exception) {
-                    exception.printStackTrace();
-                    System.exit(-1);
-                }
-                background2 = new JLabel(new ImageIcon(fiche2));
-                //JLabel background = new JLabel(new ImageIcon(fiche));
-                background2.setSize(1400, 830);
-                panneauPrincipal.add(background2, JLayeredPane.DRAG_LAYER);
-
-                add(panneauPrincipal, BorderLayout.CENTER);
-
-                panneauContenu.setOpaque(false);
-                panneauPrincipal.add(panneauContenu, JLayeredPane.PALETTE_LAYER);
-
-
-                // Redessine le panneauPrincipal pour s'assurer que les modifications sont visibles
-                panneauPrincipal.revalidate();
-                panneauPrincipal.repaint();
-
-                String optionSelectionnee = (String) comboBox.getSelectedItem();
-                nombreJoueurs = Integer.parseInt(optionSelectionnee.split(" ")[0]);
-                creerChampsNomJoueurs();
-
-                titreLabel.setVisible(false);
-                comboBox.setVisible(false);
-                aideLabel.setVisible(false);
-                confirmerBouton.setVisible(false);
-                lancerJeuBouton.setVisible(true);
-            }
-        });*/
 
         confirmerBouton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -318,50 +289,6 @@ public class NouvellePartieInterface extends JPanel {
             }
         });
     }
-
-    /*private void creerChampsNomJoueurs() {
-        supprimerTousChampsNomJoueurs();
-
-        JPanel panneauNomJoueurs = new JPanel(new GridLayout(nombreJoueurs, 1));
-
-        for (int i = 1; i <= nombreJoueurs; i++) {
-            JLabel label = new JLabel("Joueur " + i + ":");
-            JTextField textField = new JTextField();
-            textField.setPreferredSize(new Dimension(260, 48));
-            textFields.add(textField);
-
-            JPanel panneauTextField = new JPanel(new FlowLayout(FlowLayout.CENTER));
-            panneauTextField.add(label);
-            panneauTextField.add(textField);
-
-            panneauNomJoueurs.add(panneauTextField);
-
-            textField.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    String nomJoueur = textField.getText();
-                    String couleurJoueur = ""; // Ajoutez ici la logique pour choisir la couleur du joueur
-
-                    Joueur joueur = new Joueur(new ArrayList<>(), false, nomJoueur, couleurJoueur);
-                    joueurs.add(joueur);
-
-                    // Afficher la liste des joueurs à chaque ajout
-                    System.out.println("Liste des joueurs :");
-                    for (Joueur j : joueurs) {
-                        System.out.println(j.getJoueurNom());
-                    }
-                }
-            });
-        }
-
-        JPanel panneauWrapper = new JPanel(new GridBagLayout());
-        panneauWrapper.add(panneauNomJoueurs);
-
-        panneauContenu.setLayout(new BorderLayout());
-        panneauContenu.add(panneauWrapper, BorderLayout.CENTER);
-
-        revalidate();
-        repaint();
-    }*/
 
     private void creerChampsNomJoueurs(JPanel textFieldPanel) {
         supprimerTousChampsNomJoueurs();

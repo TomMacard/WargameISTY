@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-
 public class fonctions_de_traitements {
 
     //incrémenter "tourActuel" quand le joueur appuie sur le boutton "fin de tour"
