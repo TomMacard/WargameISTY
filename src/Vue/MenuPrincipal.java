@@ -9,10 +9,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -20,9 +16,6 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
@@ -64,7 +57,6 @@ public class MenuPrincipal extends JPanel implements ActionListener {
         aideInterface = new AideInterface(cardLayout, cardPanel);
 
         setLayout(new BorderLayout());
-
         JPanel menuPanel = new JPanel();
         menuPanel.setLayout(new BorderLayout());
         menuPanel.setBackground(Color.WHITE);
@@ -138,7 +130,7 @@ public class MenuPrincipal extends JPanel implements ActionListener {
         quitterButton.setBounds(300,200,400,90);
         quitterButton.setBorder(new RoundBtn(25));
         quitterButton.setPreferredSize(new Dimension(540, 52));
-        quitterButton.setBackground(new Color(155, 0, 0));
+        quitterButton.setBackground(new Color(30, 31, 34));
         quitterButton.setForeground(Color.BLACK);
         quitterButton.setFont(new Font("Arial", Font.BOLD, 20));
         quitterButton.setAlignmentX(Component.CENTER_ALIGNMENT);
