@@ -117,6 +117,8 @@ public class AideInterface extends JPanel {
             System.exit(-1);
         }
 
+
+
         JLabel background = new JLabel(new ImageIcon(backgroundImage));
         background.setSize(1350, 850);  // Set the size of the JLabel to match the image
 
