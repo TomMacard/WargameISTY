@@ -118,7 +118,6 @@ public class MenuPrincipal extends JPanel implements ActionListener {
         reprendrePartieButton.setContentAreaFilled(false);
         panel.add(reprendrePartieButton);
 
-
         aideButton = new JButton("");
         aideButton.setBounds(300,200,400,90);
         aideButton.setBorder(new RoundBtn(25));

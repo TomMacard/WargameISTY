@@ -6,6 +6,7 @@ import Vue.NouvellePartieInterface;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.HashMap;
@@ -18,6 +19,7 @@ public class Plateau extends JPanel implements MouseListener {
     public Case[][] plateauCases;
     public Unite[][] plateauUnites;
     private HashMap<Color, Image> colorToImage;
+
 
     public Plateau(int plateauLignes, int plateauColonnes, NouvellePartieInterface nouvellePartieInterface) {
         this.plateauLignes = plateauLignes;
@@ -32,6 +34,7 @@ public class Plateau extends JPanel implements MouseListener {
         colorToImage.put(Color.YELLOW, new ImageIcon("src/images/desert.png").getImage());
         colorToImage.put(Color.GREEN, new ImageIcon("src/images/plaine.png").getImage());
         this.nouvellePartieInterface = nouvellePartieInterface;
+
 
         assignRandomColors();
         plateauAttributionCases();
