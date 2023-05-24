@@ -143,7 +143,7 @@ public class AideInterface extends JPanel {
         flowPanel.setBounds(540, 760, 170, 52);  // Set the position and size of the panel
 
         JLayeredPane layeredPane = new JLayeredPane();
-        layeredPane.setPreferredSize(new Dimension(1400, 850));  // Set the preferred size to match the image
+        layeredPane.setPreferredSize(new Dimension(1200, 850));  // Set the preferred size to match the image
 
         // Add the background label to the default layer
         layeredPane.add(background, JLayeredPane.DEFAULT_LAYER);

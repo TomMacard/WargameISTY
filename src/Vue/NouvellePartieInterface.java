@@ -32,6 +32,9 @@ public class NouvellePartieInterface extends JPanel {
     private JLabel background;
     private JLabel background2;
 
+    private JPanel champHexagonesPanel;
+    private JLabel imageJeuLabel;
+
 
 
     public List<Joueur> getJoueurs() {
@@ -58,7 +61,8 @@ public class NouvellePartieInterface extends JPanel {
         this.cardLayout = gestionnaireCartes;
         this.cardPanel = panneauCartes;
         textFields = new ArrayList<>();
-        lancerJeuBouton = new JButton("Lancer la partie");
+        lancerJeuBouton = new JButton("Lancer partie");
+
         initialiser();
     }
 
@@ -77,32 +81,38 @@ public class NouvellePartieInterface extends JPanel {
         panneauContenu.setLayout(sl_panneauContenu);
         panneauContenu.setOpaque(false);
 
-        JLabel titreLabel = new JLabel("Nouvelle Partie");
+        JLabel titreLabel = new JLabel("");
         titreLabel.setFont(new Font("Arial", Font.BOLD, 20));
         titreLabel.setHorizontalAlignment(SwingConstants.CENTER);
         panneauContenu.add(titreLabel);
 
-        JLabel aideLabel = new JLabel("Choisissez le nombre de joueurs");
+        JLabel aideLabel = new JLabel("");
         aideLabel.setHorizontalAlignment(SwingConstants.CENTER);
         panneauContenu.add(aideLabel);
 
         String[] options = {"2 joueurs", "3 joueurs", "4 joueurs"};
         JComboBox<String> comboBox = new JComboBox<>(options);
         panneauContenu.add(comboBox);
-        comboBox.setBounds(590, 400, 150, 50);
+        comboBox.setBounds(630, 530, 150, 50);
         panneauPrincipal.add(comboBox, JLayeredPane.PALETTE_LAYER);
 
-        JButton confirmerBouton = new JButton("Confirmer");
+        JButton confirmerBouton = new JButton("");
         panneauContenu.add(confirmerBouton);
-        confirmerBouton.setBounds(590, 500, 150, 50);
+        confirmerBouton.setBounds(635, 715, 150, 50);
         panneauPrincipal.add(confirmerBouton, JLayeredPane.PALETTE_LAYER);
+        confirmerBouton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        confirmerBouton.setOpaque(false);
+        confirmerBouton.setContentAreaFilled(false);
+        confirmerBouton.setForeground(Color.BLACK);
+        confirmerBouton.setBorder(new RoundBtn(25));
+
 
         panneauContenu.setBounds(0, 0, 1400, 830);  // Set the position and size to match the image
         panneauPrincipal.add(panneauContenu, JLayeredPane.PALETTE_LAYER);
 
         BufferedImage fiche = null;
         try {
-            fiche = ImageIO.read(new File("src/images/wooh.png"));
+            fiche = ImageIO.read(new File("src/images/nouvellePartie.png"));
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(-1);
@@ -207,7 +217,7 @@ public class NouvellePartieInterface extends JPanel {
                 panneauPrincipal.remove(background);
                 BufferedImage fiche2 = null;
                 try {
-                    fiche2 = ImageIO.read(new File("src/images/jdid.png"));
+                    fiche2 = ImageIO.read(new File("src/images/lancerPartie.png"));
                 } catch (IOException exception) {
                     exception.printStackTrace();
                     System.exit(-1);
@@ -234,6 +244,7 @@ public class NouvellePartieInterface extends JPanel {
                 aideLabel.setVisible(false);
                 confirmerBouton.setVisible(false);
                 lancerJeuBouton.setVisible(true);
+
 
                 // Redessine le panneauPrincipal pour s'assurer que les modifications sont visibles
                 panneauPrincipal.revalidate();
@@ -264,9 +275,27 @@ public class NouvellePartieInterface extends JPanel {
 
     private void createChampHexagones() {
         Plateau plateau = new Plateau(VariablesGlobales.X_MAX, VariablesGlobales.Y_MAX, this);
-        JPanel champHexagonesPanel = new JPanel();
-        champHexagonesPanel.add(plateau);
-        champHexagonesPanel.add(boutonRetour);
+        champHexagonesPanel = new JPanel();
+        champHexagonesPanel.setLayout(new BorderLayout());
+        champHexagonesPanel.setOpaque(false);
+
+        JPanel plateauPanel = new JPanel(new BorderLayout());
+        plateauPanel.setOpaque(false);
+        plateauPanel.add(plateau, BorderLayout.CENTER);
+        champHexagonesPanel.add(plateauPanel, BorderLayout.CENTER);
+
+        BufferedImage imageJeu = null;
+        try {
+            imageJeu = ImageIO.read(new File("src/images/barreFinale.png"));
+            System.out.println("Image chargée : " + imageJeu);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        imageJeuLabel = new JLabel(new ImageIcon(imageJeu));
+        imageJeuLabel.setBounds(850, 0, 550, 830);
+        imageJeuLabel.setPreferredSize(new Dimension(450, 830));
+        champHexagonesPanel.add(imageJeuLabel, BorderLayout.EAST);
+
 
         cardPanel.add(champHexagonesPanel, "champ_hexagones");
 
@@ -288,7 +317,6 @@ public class NouvellePartieInterface extends JPanel {
                 }
             }
         });
-
     }
 
     /*private void creerChampsNomJoueurs() {
