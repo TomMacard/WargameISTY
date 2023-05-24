@@ -111,21 +111,23 @@ public class AideInterface extends JPanel {
 
         BufferedImage backgroundImage = null;
         try {
-            backgroundImage = ImageIO.read(new File("src/images/background..png"));
+            backgroundImage = ImageIO.read(new File("src/images/wooh.png"));
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(-1);
         }
 
         JLabel background = new JLabel(new ImageIcon(backgroundImage));
-        background.setSize(1400, 850);  // Set the size of the JLabel to match the image
+        background.setSize(1350, 850);  // Set the size of the JLabel to match the image
 
-        retourButton = new JButton("Retour");
+        retourButton = new JButton("");
         retourButton.setBorder(new RoundBtn(25));
-        retourButton.setPreferredSize(new Dimension(540, 52));
+        retourButton.setPreferredSize(new Dimension(90, 52));
         retourButton.setBackground(new Color(30, 31, 34));
         retourButton.setForeground(Color.BLACK);
         retourButton.setFont(new Font("Arial", Font.BOLD, 20));
+        retourButton.setOpaque(false);
+        retourButton.setContentAreaFilled(false);
 
         retourButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
