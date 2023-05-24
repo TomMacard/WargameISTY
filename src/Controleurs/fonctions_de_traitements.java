@@ -25,6 +25,8 @@ public class fonctions_de_traitements {
         Dimension size = new Dimension(1400, 830);
         MenuPrincipal menuPrincipal = new MenuPrincipal();
         menuPrincipal.setBorder(BorderFactory.createEmptyBorder());
+
+
         menuPrincipal.setApplication(null);
         JFrame frame = new JFrame("Wargame");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
