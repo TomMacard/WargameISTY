@@ -170,25 +170,31 @@ public class Unite {
     public void UniteDeplacementElementaire( int destinationX, int destinationY, Plateau plateau) {
         int uniteX = this.getUniteX();
         int uniteY = this.getUniteY();
-
         Case caseDestination = plateau.plateauCases[destinationX][destinationY] ;
-
         Unite unitedepart=  plateau.plateauUnites[uniteX][uniteY];
         Unite uniteDestination = plateau.plateauUnites[destinationX][destinationY];
-
-        if (caseDestination != null && uniteDestination.getUniteJoueur()!=this.getUniteJoueur()){
-            attaqueEtDefense(unitedepart, uniteDestination,plateau);}
+        int potentielDeplacement= this.getUniteDeplacementCourant();
+        int coutDeplacement= caseDestination.getCaseCoutDeplacement();
+        if (caseDestination != null && uniteDestination.getUniteJoueur()!=this.getUniteJoueur() && potentielDeplacement>=coutDeplacement){
+            attaqueEtDefense(unitedepart, uniteDestination,plateau);
+            potentielDeplacement-=coutDeplacement;
+            setUniteDeplacementCourant(potentielDeplacement);
+        }
         else if (caseDestination != null && uniteDestination.getUniteJoueur()==this.getUniteJoueur() ){
             System.out.println("deplacement impossible: il y'a votre unité sur cette case");
         }
+        else if (potentielDeplacement<coutDeplacement){
+            System.out.println("deplacement impossible: Vous n'avez pas assez de potentiel de deplacement");
+        }
         else {
-
             setUniteX(destinationX);
             setUniteY(destinationY);
+            potentielDeplacement-=coutDeplacement;
+            setUniteDeplacementCourant(potentielDeplacement);
         }
 
     }
-    //hello
+
 
 
 
