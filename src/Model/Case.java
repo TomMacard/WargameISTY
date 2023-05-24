@@ -79,35 +79,34 @@ public class Case {
         this.caseCouleur = caseCouleur;
     }
 
-    public void caseVoisins(Case casecliquee) {
+    public boolean caseVoisins(Case caseArrivee) {
+        int x1 = this.getCaseX();
+        int y1 = this.getCaseY();
+        int x2 = caseArrivee.getCaseX();
+        int y2 = caseArrivee.getCaseY();
 
-        int x = casecliquee.getCaseX();
-        int y = casecliquee.getCaseY();
-        // Check and highlight the left neighbor
-        if (x - 1 >= 0) {
-            // Highlight the left neighbor tile
+        if (x1 - 1 == x2 && y1 == y2) {
+            return true;
         }
-        // Check and highlight the right neighbor
-        if (x + 1 < VariablesGlobales.X_MAX) {
-            // Highlight the right neighbor tile
+        if (x1 + 1 == x2 && y1 == y2) {
+            return true;
         }
-        // Check and highlight the top-left and top-right neighbors
-        if (y % 2 == 0) {
-            if (y - 1 >= 0 && x - 1 >= 0) {
-                // Highlight the top-left neighbor tile
+        if (y1 % 2 == 0) {
+            if (x1 - 1 == x2 && y1 - 1 == y2) {
+                return true;
             }
-            if (y - 1 >= 0 && x + 1 < VariablesGlobales.X_MAX) {
-                // Highlight the top-right neighbor tile
+            if (x1 == x2 && y1 - 1 == y2) {
+                return true;
             }
         } else {
-            // Check and highlight the bottom-left and bottom-right neighbors
-            if (y + 1 < VariablesGlobales.Y_MAX && x - 1 >= 0) {
-                // Highlight the bottom-left neighbor tile
+            if (x1 == x2 && y1 + 1 == y2) {
+                return true;
             }
-            if (y + 1 < VariablesGlobales.Y_MAX && x + 1 < VariablesGlobales.X_MAX) {
-                // Highlight the bottom-right neighbor tile
+            if (x1 - 1 == x2 && y1 + 1 == y2) {
+                return true;
             }
         }
+        return false;
     }
 
 
