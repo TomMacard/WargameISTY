@@ -39,6 +39,7 @@ public class Jeu {
         this.jeuPlateau = jeuPlateau;
         this.jeuJoueurs = jeuJoueurs;
         this.jeuJoueurActuel = jeuJoueurs.get(0);
+        jeuBouclePrincipale();
     }
 
     public void jeuBouclePrincipale() {
@@ -49,15 +50,15 @@ public class Jeu {
                     System.out.println("Joueur éliminé et ne joue pas : "+this.jeuJoueurActuel.getJoueurNom());
                     JOptionPane.showMessageDialog(null,"Joueur éliminé et ne joue pas : "+this.jeuJoueurActuel.getJoueurNom(), "Joueur Eliminé", JOptionPane.INFORMATION_MESSAGE);
                 }
-                else {
+                /*else {
                     while (1==1) {
                         System.out.println("Tour du joueur : "+this.jeuJoueurActuel.getJoueurNom());
                         JOptionPane.showMessageDialog(null,"Tour du joueur : "+this.jeuJoueurActuel.getJoueurNom(), "Tour Suivant", JOptionPane.INFORMATION_MESSAGE);
                     }
-                }
+                }*/
             }
             //regen vie
-            //regen point d deplacement
+            jeuRegenDeplacement();
         }
         System.out.println("Jeu Fini");
         JOptionPane.showMessageDialog(null,"Jeu Fini","Jeu Fini", JOptionPane.INFORMATION_MESSAGE);
@@ -65,6 +66,7 @@ public class Jeu {
 
     public boolean jeuConditionVictoire() {
 
+        // a finir
         return false;
 
     }
@@ -79,6 +81,14 @@ public class Jeu {
         }
         return(true);
     }
-    //Jeu jeu = new Jeu()
+
+
+    public void jeuRegenDeplacement() {
+        for (Joueur joueur : this.jeuJoueurs) {
+            for (Unite unite : joueur.joueurUnites) {
+                unite.setUniteDeplacementCourant(unite.getUnitePotDeplacement());
+            }
+        }
+    }
 
 }
