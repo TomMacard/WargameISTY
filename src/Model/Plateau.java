@@ -18,6 +18,7 @@ public class Plateau extends JPanel implements MouseListener {
     private HashMap<Color, Image> colorToImage;
 
 
+
     public Plateau(int plateauLignes, int plateauColonnes, NouvellePartieInterface nouvellePartieInterface) {
         this.plateauLignes = plateauLignes;
         this.plateauColonnes = plateauColonnes;
@@ -157,17 +158,17 @@ public class Plateau extends JPanel implements MouseListener {
 
             //Debug
             System.out.println("==========");
+            String msg="";
             if (casecliquee != null) {
-                System.out.println("Nom Case  : "+casecliquee.getCaseType());
-                System.out.println("Coord case: "+casecliquee.getCaseX()+ ", "+casecliquee.getCaseY());
+                msg=msg+"Nom Case  : "+casecliquee.getCaseType()+" Coord case: "+casecliquee.getCaseX()+ ", "+casecliquee.getCaseY()+"\n";
             }
             if (unitecliquee != null) {
-                System.out.println("Nom Unité : "+unitecliquee.getUniteType());
-                System.out.println("Nom Joueur: "+unitecliquee.getUniteJoueur().getJoueurNom());
+                msg=msg+"Nom Unité : "+unitecliquee.getUniteType()+" Nom Joueur: "+unitecliquee.getUniteJoueur().getJoueurNom();
             }
             if (unitecliquee == null) {
-                System.out.println("Pas d'unités sur cette Case");
+                msg=msg+"Pas d'unités sur cette Case";
             }
+            System.out.println(msg);
             System.out.println("==========");
             //fin Debug */
 
@@ -291,7 +292,6 @@ public class Plateau extends JPanel implements MouseListener {
     }
 
     //fonction qui teleporte une unité sur le plateau (pas de verification + il faut set les coords de l'unité à part)
-
     public void plateauMouvement(int x1,int y1, int x2, int y2) {
         Unite uniteadeplacer = this.plateauUnites[x1][y1];
         this.plateauUnites[x1][y1]=null;

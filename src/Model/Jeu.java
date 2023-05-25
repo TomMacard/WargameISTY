@@ -1,15 +1,20 @@
 package Model;
-
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class Jeu {
     private Plateau jeuPlateau;
     private List<Joueur> jeuJoueurs;
-    private List<Unite> jeuUnites;
+    private Joueur jeuJoueurActuel;
 
-    public Jeu(List<Joueur> joueurs) {
-        this.jeuJoueurs = joueurs;
+    public Joueur getJeuJoueurActuel() {
+        return jeuJoueurActuel;
     }
+
+    public void setJeuJoueurActuel(Joueur jeuJoueurActuel) {
+        this.jeuJoueurActuel = jeuJoueurActuel;
+    }
+
 
     // Getters
     public Plateau getJeuPlateau() {
@@ -20,9 +25,6 @@ public class Jeu {
         return jeuJoueurs;
     }
 
-    public List<Unite> getJeuUnites() {
-        return jeuUnites;
-    }
 
     // Setters
     public void setJeuPlateau(Plateau jeuPlateau) {
@@ -33,7 +35,60 @@ public class Jeu {
         this.jeuJoueurs = jeuJoueurs;
     }
 
-    public void setJeuUnites(List<Unite> jeuUnites) {
-        this.jeuUnites = jeuUnites;
+    public Jeu(Plateau jeuPlateau, List<Joueur> jeuJoueurs) {
+        this.jeuPlateau = jeuPlateau;
+        this.jeuJoueurs = jeuJoueurs;
+        this.jeuJoueurActuel = jeuJoueurs.get(0);
+        jeuBouclePrincipale();
     }
+
+    public void jeuBouclePrincipale() {
+        while (!jeuConditionVictoire()) {
+            for (int i = 0; i < this.jeuJoueurs.size(); i++) {
+                this.jeuJoueurActuel= jeuJoueurs.get(i % this.jeuJoueurs.size());
+                if (jeuJoueurNaPlusDUnites()) {
+                    System.out.println("Joueur éliminé et ne joue pas : "+this.jeuJoueurActuel.getJoueurNom());
+                    JOptionPane.showMessageDialog(null,"Joueur éliminé et ne joue pas : "+this.jeuJoueurActuel.getJoueurNom(), "Joueur Eliminé", JOptionPane.INFORMATION_MESSAGE);
+                }
+                /*else {
+                    while (1==1) {
+                        System.out.println("Tour du joueur : "+this.jeuJoueurActuel.getJoueurNom());
+                        JOptionPane.showMessageDialog(null,"Tour du joueur : "+this.jeuJoueurActuel.getJoueurNom(), "Tour Suivant", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }*/
+            }
+            //regen vie
+            jeuRegenDeplacement();
+        }
+        System.out.println("Jeu Fini");
+        JOptionPane.showMessageDialog(null,"Jeu Fini","Jeu Fini", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public boolean jeuConditionVictoire() {
+
+        // a finir
+        return false;
+
+    }
+
+    public boolean jeuJoueurNaPlusDUnites() {
+        Joueur joueur = this.jeuJoueurActuel;
+        boolean perdu = true;
+        for (Unite unite : joueur.getJoueurUnites()) {
+            if (unite != null) {
+                return(false);
+            }
+        }
+        return(true);
+    }
+
+
+    public void jeuRegenDeplacement() {
+        for (Joueur joueur : this.jeuJoueurs) {
+            for (Unite unite : joueur.joueurUnites) {
+                unite.setUniteDeplacementCourant(unite.getUnitePotDeplacement());
+            }
+        }
+    }
+
 }
