@@ -18,15 +18,6 @@ public class fonctions_de_traitements {
         UIManager.setLookAndFeel(buttonStyle);
 
 
-        Tour tour = new Tour();
-        // ne pas oublier de modifier le code après la création du bouton "fin de tour" au bon endroit(sur le jeu)
-        JButton finTour = new JButton("Fin de tour");
-        finTour.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                tour.incrementerTour();
-                System.out.println("Numéro tour : " + tour.getTourActuel());
-            }
-        });
 
         Dimension size = new Dimension(1400, 830);
         MenuPrincipal menuPrincipal = new MenuPrincipal();
