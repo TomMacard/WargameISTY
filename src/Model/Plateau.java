@@ -112,6 +112,7 @@ public class Plateau extends JPanel implements MouseListener {
     MouseEvent premierClic = null;
     MouseEvent deuxiemeClic = null;
     Unite unitecliquee = null;
+    Unite unitecliquee2=null;
     Case casecliquee = null;
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -122,36 +123,32 @@ public class Plateau extends JPanel implements MouseListener {
         int lig = (int) ((y - (col % 2) * 30) / (30 * 2));
 
         if (col < VariablesGlobales.Y_MAX && lig < VariablesGlobales.X_MAX) {
-
-            System.out.println(premierClic);
-            System.out.println(deuxiemeClic);
-
             if (premierClic == null) {
                 System.out.println("1er clic");
                 premierClic = e;
                 casecliquee = plateauObtenirCase(lig, col);
                 unitecliquee = plateauObtenirUnite(lig, col);
             }
-
-
             else if (deuxiemeClic == null ) {
                 deuxiemeClic = e;
                 System.out.println("2eme clic");
                 Case casecliquee2 = plateauObtenirCase(lig, col);
+                Unite unitecliquee2 = plateauObtenirUnite(lig,col);
                 System.out.println(casecliquee.caseVoisins(casecliquee2));
 
-                if (unitecliquee != null && casecliquee.caseVoisins(casecliquee2)) {
-
-                        //unitecliquee.getUniteJoueur()== )
-
-                    System.out.println("tentative déplacement");
-                    int xarrivee = casecliquee2.getCaseX();
-                    int yarrivee = casecliquee2.getCaseY();
-
-                    unitecliquee.UniteDeplacementElementaire(xarrivee, yarrivee, this);
-                    System.out.println("Deplacement effectue");
-                    unitecliquee=null;
-                    casecliquee=null;
+                if (unitecliquee != null) {
+                    if (casecliquee.caseVoisins(casecliquee2)) { //unitecliquee.getUniteJoueur()== )
+                        System.out.println("tentative déplacement");
+                        int xarrivee = casecliquee2.getCaseX();
+                        int yarrivee = casecliquee2.getCaseY();
+                        unitecliquee.UniteDeplacementElementaire(xarrivee, yarrivee, this);
+                        System.out.println("Deplacement effectué");
+                        unitecliquee = null;
+                        casecliquee = null;
+                    }
+                    else if (unitecliquee.getUnitePortee()>1 && unitecliquee2!=null && unitecliquee2.getUniteJoueur()!=unitecliquee.getUniteJoueur()) {
+                        unitecliquee.attaqueEtDefense(unitecliquee2,this);
+                    }
                 }
                 premierClic = null;
                 deuxiemeClic = null;
@@ -175,9 +172,7 @@ public class Plateau extends JPanel implements MouseListener {
             //fin Debug */
 
         }
-
         //setHexagonColor(lig, col, Color.BLACK);
-        
         repaint();
     }
 

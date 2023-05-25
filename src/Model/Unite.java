@@ -140,10 +140,10 @@ public class Unite {
         return tuile;
     }
 
-    public void attaqueEtDefense(Unite attaquant, Unite cible, Plateau plateau) {
+    public void attaqueEtDefense(Unite cible, Plateau plateau) {
 
         // Effectuer l'attaque
-        int potentielAttaque = attaquant.getUnitePotAttaque();
+        int potentielAttaque = this.getUnitePotAttaque();
         int pvCourant = cible.getUnitePVCourant();
         Case caseCible = cible.unitePlateauCase(plateau);
         int bonusDefense = caseCible.getCaseDefense();
@@ -163,12 +163,12 @@ public class Unite {
             // Supprimer l'unité du plateau
             if (plateau != null) {
                 plateau.plateauUnites[cible.uniteX][cible.uniteY] = (null);
-                msg ="Attaque : "+attaquant.getUniteType()+" a eliminé "+ cible.getUniteType();
+                msg ="Attaque : "+this.getUniteType()+" a eliminé "+ cible.getUniteType();
             }
         }
         else {
             cible.setUnitePVCourant(pvCourant);
-            msg ="Attaque : "+attaquant.getUniteType()+" a attaqué "+ cible.getUniteType()+" et enlevé "+(potentielAttaque * bonusDefense) / 100+" PV";;
+            msg ="Attaque : "+this.getUniteType()+" a attaqué "+ cible.getUniteType()+" et enlevé "+(potentielAttaque * bonusDefense) / 100+" PV";;
         }
         JOptionPane.showMessageDialog(null,msg, "Attaque Effectuée", JOptionPane.INFORMATION_MESSAGE);
     }
@@ -187,7 +187,7 @@ public class Unite {
         }
         else if (uniteDestination!=null) {
             if (uniteDestination.getUniteJoueur()!=this.getUniteJoueur()){
-                attaqueEtDefense(unitedepart, uniteDestination,plateau);
+                unitedepart.attaqueEtDefense(uniteDestination,plateau);
                 potentielDeplacement-=coutDeplacement;
                 setUniteDeplacementCourant(potentielDeplacement);
             }

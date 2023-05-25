@@ -25,7 +25,7 @@ public class fonctions_de_traitements {
 
 
         menuPrincipal.setApplication(null);
-        JFrame frame = new JFrame("Wargame");
+        JFrame frame = new JFrame("Wargame Meilleur Groupe");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setLayout(new BorderLayout());
