@@ -103,7 +103,7 @@ public class Plateau extends JPanel implements MouseListener {
 
     @Override
     public Dimension getPreferredSize() {
-        int width = plateauColonnes * 41 * 2 + 30 * 2;
+        int width = plateauColonnes *30 * 2 + 30 * 2;
         int height = plateauLignes * 30 * 2 + 30;
 
         return new Dimension(width, height);
@@ -141,6 +141,7 @@ public class Plateau extends JPanel implements MouseListener {
                 System.out.println(casecliquee.caseVoisins(casecliquee2));
 
                 if (unitecliquee != null && casecliquee.caseVoisins(casecliquee2)) {
+
                         //unitecliquee.getUniteJoueur()== )
 
                     System.out.println("tentative déplacement");

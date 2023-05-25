@@ -148,6 +148,8 @@ public class Unite {
         Case caseCible = cible.unitePlateauCase(plateau);
         int bonusDefense = caseCible.getCaseDefense();
 
+        String msg=null;
+
         // Réduire le potentiel de défense de la cible en fonction du potentiel d'attaque de l'attaquant
         pvCourant -= (potentielAttaque * bonusDefense) / 100;
         int resultat = (int) pvCourant;
@@ -161,10 +163,14 @@ public class Unite {
             // Supprimer l'unité du plateau
             if (plateau != null) {
                 plateau.plateauUnites[cible.uniteX][cible.uniteY] = (null);
+                msg ="Attaque : "+attaquant.getUniteType()+" a eliminé "+ cible.getUniteType();
             }
-        } else {
-            cible.setUnitePVCourant(pvCourant);
         }
+        else {
+            cible.setUnitePVCourant(pvCourant);
+            msg ="Attaque : "+attaquant.getUniteType()+" a attaqué "+ cible.getUniteType()+" et enlevé "+(potentielAttaque * bonusDefense) / 100+" PV";;
+        }
+        JOptionPane.showMessageDialog(null,msg, "Attaque Effectuée", JOptionPane.INFORMATION_MESSAGE);
     }
 
 
