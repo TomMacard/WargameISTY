@@ -3,7 +3,7 @@ package Model;
 import java.util.List;
 
 public class Joueur {
-    private List<Unite> joueurUnites;
+    public List<Unite> joueurUnites;
     private boolean joueurVictoire;
     private String joueurNom;
     private String joueurCouleur;

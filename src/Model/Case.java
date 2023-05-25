@@ -92,5 +92,13 @@ public class Case {
 
     }
 
+    public int caseDistance(Case case2) {
+        int x = case2.getCaseX() - this.getCaseX();
+        int y = case2.getCaseY() - this.getCaseY();
+        double distance = Math.sqrt(x*x + y*y);
+        return ((int) distance);
+    }
+
+
 
 }

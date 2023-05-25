@@ -1,5 +1,6 @@
 package Vue;
 
+import Model.Jeu;
 import Model.Plateau;
 import Model.VariablesGlobales;
 
@@ -314,6 +315,8 @@ public class NouvellePartieInterface extends JPanel {
                     Joueur joueur = new Joueur(new ArrayList<>(), false, nomJoueur, couleurJoueur);
                     joueurs.add(joueur);
                 }
+
+                Jeu jeu = new Jeu(plateau,joueurs);
 
                 // Afficher la liste des joueurs à chaque ajout
                 System.out.println("Liste des joueurs :");

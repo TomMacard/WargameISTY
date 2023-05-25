@@ -29,6 +29,7 @@ public class Unite {
         this.uniteType = type;
         this.uniteDeplacementCourant = potDeplacement;
         this.uniteJoueur = uniteJoueur;
+        uniteJoueur.joueurUnites.add(this);
     }
 
     public Joueur getUniteJoueur() {
