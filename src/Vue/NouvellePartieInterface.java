@@ -447,6 +447,7 @@ public class NouvellePartieInterface extends JPanel {
         } else {
             nomJoueur = new JLabel("Aucun joueur");
         }
+
         nomJoueur.setFont(new Font("Arial", Font.BOLD, 30));
         nomJoueur.setBounds(900, 10, 370, 80);
         //caracteristiqueUnite = new JLabel("Tour du joueur : " + joueurs.get(0).getJoueurNom());
