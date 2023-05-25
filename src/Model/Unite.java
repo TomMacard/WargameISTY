@@ -1,4 +1,5 @@
 package Model;
+import javax.swing.JOptionPane;
 
 public class Unite {
     private int unitePotAttaque;
@@ -175,27 +176,25 @@ public class Unite {
         Unite uniteDestination = plateau.plateauUnites[destinationX][destinationY];
         int potentielDeplacement= this.getUniteDeplacementCourant();
         int coutDeplacement= caseDestination.getCaseCoutDeplacement();
-        if (caseDestination != null && uniteDestination.getUniteJoueur()!=this.getUniteJoueur() && potentielDeplacement>=coutDeplacement){
-            attaqueEtDefense(unitedepart, uniteDestination,plateau);
-            potentielDeplacement-=coutDeplacement;
-            setUniteDeplacementCourant(potentielDeplacement);
+        if (potentielDeplacement<coutDeplacement){
+            JOptionPane.showMessageDialog(null, "deplacement impossible: Vous n'avez pas assez de potentiel de deplacement", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
-        else if (caseDestination != null && uniteDestination.getUniteJoueur()==this.getUniteJoueur() ){
-            System.out.println("deplacement impossible: il y'a votre unité sur cette case");
-        }
-        else if (potentielDeplacement<coutDeplacement){
-            System.out.println("deplacement impossible: Vous n'avez pas assez de potentiel de deplacement");
+        else if (uniteDestination!=null) {
+            if (uniteDestination.getUniteJoueur()!=this.getUniteJoueur()){
+                attaqueEtDefense(unitedepart, uniteDestination,plateau);
+                potentielDeplacement-=coutDeplacement;
+                setUniteDeplacementCourant(potentielDeplacement);
+            }
+            else if (uniteDestination.getUniteJoueur()==this.getUniteJoueur() ){
+                JOptionPane.showMessageDialog(null, "deplacement impossible: il y a votre unité sur cette case", "Erreur", JOptionPane.ERROR_MESSAGE);
+            }
         }
         else {
             setUniteX(destinationX);
             setUniteY(destinationY);
             potentielDeplacement-=coutDeplacement;
             setUniteDeplacementCourant(potentielDeplacement);
+            plateau.plateauMouvement(uniteX,uniteY,destinationX,destinationY);
         }
-
     }
-
-
-
-
 }
