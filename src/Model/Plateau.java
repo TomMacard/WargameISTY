@@ -1,12 +1,9 @@
 package Model;
-import Model.VariablesGlobales;
-import Vue.MenuPrincipal;
 import Vue.NouvellePartieInterface;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.HashMap;
@@ -131,17 +128,20 @@ public class Plateau extends JPanel implements MouseListener {
 
             if (premierClic == null) {
                 System.out.println("1er clic");
-                premierClic= e;
-                casecliquee = plateauObtenirCase(lig,col);
-                unitecliquee = plateauObtenirUnite(lig,col);
+                premierClic = e;
+                casecliquee = plateauObtenirCase(lig, col);
+                unitecliquee = plateauObtenirUnite(lig, col);
             }
+
+
             else if (deuxiemeClic == null ) {
                 deuxiemeClic = e;
                 System.out.println("2eme clic");
                 Case casecliquee2 = plateauObtenirCase(lig, col);
-                if (unitecliquee != null && casecliquee.caseVoisins(casecliquee2))
+                System.out.println(casecliquee.caseVoisins(casecliquee2));
+
+                if (unitecliquee != null && casecliquee.caseVoisins(casecliquee2)) {
                         //unitecliquee.getUniteJoueur()== )
-                    {
 
                     System.out.println("tentative déplacement");
                     int xarrivee = casecliquee2.getCaseX();
@@ -159,9 +159,9 @@ public class Plateau extends JPanel implements MouseListener {
 
             //Debug
             System.out.println("==========");
-            System.out.println("Coord case: "+col+ ", "+lig);
             if (casecliquee != null) {
                 System.out.println("Nom Case  : "+casecliquee.getCaseType());
+                System.out.println("Coord case: "+casecliquee.getCaseX()+ ", "+casecliquee.getCaseY());
             }
             if (unitecliquee != null) {
                 System.out.println("Nom Unité : "+unitecliquee.getUniteType());

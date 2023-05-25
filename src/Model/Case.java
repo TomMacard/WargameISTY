@@ -85,28 +85,11 @@ public class Case {
         int x2 = caseArrivee.getCaseX();
         int y2 = caseArrivee.getCaseY();
 
-        if (x1 - 1 == x2 && y1 == y2) {
-            return true;
-        }
-        if (x1 + 1 == x2 && y1 == y2) {
-            return true;
-        }
-        if (y1 % 2 == 0) {
-            if (x1 - 1 == x2 && y1 - 1 == y2) {
-                return true;
-            }
-            if (x1 == x2 && y1 - 1 == y2) {
-                return true;
-            }
-        } else {
-            if (x1 == x2 && y1 + 1 == y2) {
-                return true;
-            }
-            if (x1 - 1 == x2 && y1 + 1 == y2) {
-                return true;
-            }
-        }
-        return false;
+        int x=x2-x1;
+        int y=y2-y1;
+
+        return (x == 0 && y == -1) || (x == -1 && y == -1) || (x == -1 && y == 0) || (x == 0 && y == 1) || (x == 1 && y == 0) || (x == 1 && y == -1);
+
     }
 
 
