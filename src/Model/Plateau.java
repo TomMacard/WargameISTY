@@ -263,8 +263,8 @@ public class Plateau extends JPanel implements MouseListener {
             this.plateauUnites[0][0] = new uniteBassem(0,0, joueurs.get(0));
             this.plateauUnites[1][0] = new uniteTom(1,0, joueurs.get(0));
             this.plateauUnites[0][1] = new uniteMostafa(0,1, joueurs.get(0));
-            this.plateauUnites[1][1] = new uniteDhia(0,1, joueurs.get(0));
-            this.plateauUnites[1][2] = new uniteFadi(0,1, joueurs.get(0));
+            this.plateauUnites[1][1] = new uniteDhia(1,1, joueurs.get(0));
+            this.plateauUnites[1][2] = new uniteFadi(1,2, joueurs.get(0));
 
             this.plateauUnites[12][15] = new uniteBassem(12,15, joueurs.get(1));
             this.plateauUnites[11][15] = new uniteTom(11,15, joueurs.get(1));
