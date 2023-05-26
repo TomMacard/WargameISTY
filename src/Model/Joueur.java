@@ -1,14 +1,15 @@
 package Model;
 
+import java.awt.*;
 import java.util.List;
 
 public class Joueur {
     public List<Unite> joueurUnites;
     private boolean joueurVictoire;
     private String joueurNom;
-    private String joueurCouleur;
+    private Color joueurCouleur;
 
-    public Joueur(List<Unite> unites, boolean victoire, String nom, String couleur) {
+    public Joueur(List<Unite> unites, boolean victoire, String nom, Color couleur) {
         this.joueurUnites = unites;
         this.joueurVictoire = victoire;
         this.joueurNom = nom;
@@ -28,7 +29,7 @@ public class Joueur {
         return joueurNom;
     }
 
-    public String getJoueurCouleur() {
+    public Color getJoueurCouleur() {
         return joueurCouleur;
     }
 
@@ -45,7 +46,7 @@ public class Joueur {
         this.joueurNom = joueurNom;
     }
 
-    public void setJoueurCouleur(String joueurCouleur) {
+    public void setJoueurCouleur(Color joueurCouleur) {
         this.joueurCouleur = joueurCouleur;
     }
 }
