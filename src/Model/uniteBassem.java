@@ -14,4 +14,31 @@ public class uniteBassem extends Unite{
     public uniteBassem( int x, int y, Joueur uniteJoueur) {
         super( Attaque, Defense, PVmax, Deplacement, vision, portee, x, y, PVmax, type, uniteJoueur);
     }
+   public static int getAttaque() {
+      return Attaque;
+   }
+
+   public static int getDefense() {
+      return Defense;
+   }
+
+   public static int getPVmax() {
+      return PVmax;
+   }
+
+   public static int getDeplacement() {
+      return Deplacement;
+   }
+
+   public static int getVision() {
+      return vision;
+   }
+
+   public static int getPortee() {
+      return portee;
+   }
+
+   public String getType() {
+      return type;
+   }
 }

@@ -1,6 +1,7 @@
 package Vue;
 
 import Model.Plateau;
+import Model.Unite;
 import Model.VariablesGlobales;
 
 import java.awt.*;
@@ -14,6 +15,11 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import Model.Joueur;
+import Model.uniteTom;
+import Model.uniteDhia;
+import Model.uniteBassem;
+import Model.uniteFadi;
+import Model.uniteMostafa;
 
 
 public class NouvellePartieInterface extends JPanel {
@@ -34,7 +40,11 @@ public class NouvellePartieInterface extends JPanel {
     private JLabel nomJoueur;
     private JPanel champHexagonesPanel;
     private JLabel imageJeuLabel;
-
+    private JLabel caracteristiqueUnite1;
+    private JLabel caracteristiqueUnite2;
+    private JLabel caracteristiqueUnite3;
+    private JLabel caracteristiqueUnite4;
+    private JLabel caracteristiqueUnite5;
 
 
 
@@ -244,126 +254,6 @@ public class NouvellePartieInterface extends JPanel {
 
     }
 
-    /*private void createChampHexagones() {
-        Plateau plateau = new Plateau(VariablesGlobales.X_MAX, VariablesGlobales.Y_MAX, this);
-        champHexagonesPanel = new JPanel();
-        champHexagonesPanel.setLayout(new BorderLayout());
-        champHexagonesPanel.setOpaque(false);
-
-        JPanel plateauPanel = new JPanel(new BorderLayout());
-        plateauPanel.setOpaque(false);
-        plateauPanel.add(plateau, BorderLayout.CENTER);
-        champHexagonesPanel.add(plateauPanel, BorderLayout.CENTER);
-
-        BufferedImage imageJeu = null;
-        try {
-            imageJeu = ImageIO.read(new File("src/images/barreFinale.png"));
-            System.out.println("Image chargée : " + imageJeu);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        imageJeuLabel = new JLabel(new ImageIcon(imageJeu));
-        imageJeuLabel.setBounds(850, 0, 550, 830);
-        imageJeuLabel.setPreferredSize(new Dimension(450, 830));
-        champHexagonesPanel.add(imageJeuLabel, BorderLayout.EAST);
-        numeroJoueur = new JLabel("Nom Joueur");
-        numeroJoueur.setFont(new Font("Arial", Font.BOLD, 20));
-        champHexagonesPanel.add(numeroJoueur, BorderLayout.NORTH);
-
-
-        cardPanel.add(champHexagonesPanel, "champ_hexagones");
-
-        lancerJeuBouton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                joueurs = new ArrayList<Joueur>();
-                for (JTextField textField : textFields) { // Parcourir tous les JTextField
-                    String nomJoueur = textField.getText();
-                    String couleurJoueur = ""; // Ajoutez ici la logique pour choisir la couleur du joueur
-
-                    Joueur joueur = new Joueur(new ArrayList<>(), false, nomJoueur, couleurJoueur);
-                    joueurs.add(joueur);
-                }
-
-                // Afficher la liste des joueurs à chaque ajout
-                System.out.println("Liste des joueurs :");
-                for (Joueur j : joueurs) {
-                    System.out.println(j.getJoueurNom());
-                }
-                if (!joueurs.isEmpty()) {
-                    numeroJoueur.setText("Tour du joueur : " + joueurs.get(0).getJoueurNom());
-                    System.out.println("Tour du joueur : " + joueurs.get(0).getJoueurNom());
-
-                }
-            }
-        });
-    }*/
-
-    /*private void createChampHexagones() {
-        Plateau plateau = new Plateau(VariablesGlobales.X_MAX, VariablesGlobales.Y_MAX, this);
-        champHexagonesPanel = new JPanel();
-        champHexagonesPanel.setLayout(new BorderLayout());
-        champHexagonesPanel.setOpaque(false);
-
-        JPanel plateauPanel = new JPanel(new BorderLayout());
-        plateauPanel.setOpaque(false);
-        plateauPanel.add(plateau, BorderLayout.CENTER);
-        champHexagonesPanel.add(plateauPanel, BorderLayout.CENTER);
-
-        BufferedImage imageJeu = null;
-        try {
-            imageJeu = ImageIO.read(new File("src/images/barreFinale.png"));
-            System.out.println("Image chargée : " + imageJeu);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        imageJeuLabel = new JLabel(new ImageIcon(imageJeu));
-        imageJeuLabel.setBounds(850, 0, 550, 830);
-        imageJeuLabel.setPreferredSize(new Dimension(450, 830));
-        champHexagonesPanel.add(imageJeuLabel, BorderLayout.EAST);
-
-        JPanel overlayPanel = new JPanel();
-        overlayPanel.setOpaque(false);
-        overlayPanel.setLayout(new BorderLayout());
-        if (!joueurs.isEmpty()) {
-            nomJoueur = new JLabel("Tour du joueur : " + joueurs.get(0).getJoueurNom());
-        } else {
-            nomJoueur = new JLabel("Aucun joueur");
-        }
-
-
-        nomJoueur.setFont(new Font("Arial", Font.BOLD, 20));
-        nomJoueur.setHorizontalAlignment(SwingConstants.RIGHT);
-        overlayPanel.add(nomJoueur, BorderLayout.NORTH);
-        champHexagonesPanel.add(overlayPanel);
-
-
-        cardPanel.add(champHexagonesPanel, "champ_hexagones");
-
-        lancerJeuBouton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                joueurs = new ArrayList<>();
-                for (JTextField textField : textFields) {
-                    String nomJoueur = textField.getText();
-                    String couleurJoueur = "";
-                    Joueur joueur = new Joueur(new ArrayList<>(), false, nomJoueur, couleurJoueur);
-                    joueurs.add(joueur);
-                }
-
-                System.out.println("Liste des joueurs :");
-                for (Joueur j : joueurs) {
-                    System.out.println(j.getJoueurNom());
-                }
-                if (!joueurs.isEmpty()) {
-                    nomJoueur.setText("Tour du joueur : " + joueurs.get(0).getJoueurNom());
-                    System.out.println("Tour du joueur : " + joueurs.get(0).getJoueurNom());
-                }
-            }
-        });
-    }*/
-
-
-
-
     private void creerChampsNomJoueurs(JPanel textFieldPanel) {
         supprimerTousChampsNomJoueurs();
 
@@ -440,7 +330,7 @@ public class NouvellePartieInterface extends JPanel {
             ex.printStackTrace();
         }
         imageJeuLabel = new JLabel(new ImageIcon(imageJeu));
-        imageJeuLabel.setBounds(850, 0, 550, 830);
+        imageJeuLabel.setBounds(900, 0, 550, 830);
 
         if (!joueurs.isEmpty()) {
             nomJoueur = new JLabel("Tour du joueur : " + joueurs.get(0).getJoueurNom());
@@ -449,12 +339,68 @@ public class NouvellePartieInterface extends JPanel {
         }
 
         nomJoueur.setFont(new Font("Arial", Font.BOLD, 30));
-        nomJoueur.setBounds(900, 10, 370, 80);
-        //caracteristiqueUnite = new JLabel("Tour du joueur : " + joueurs.get(0).getJoueurNom());
+        nomJoueur.setBounds(955, 4, 370, 80);
+
+        caracteristiqueUnite1 = new JLabel("  " + uniteBassem.getAttaque()
+                + "    " + uniteBassem.getDefense()
+                + "    " + uniteBassem.getPVmax()
+                + "    " + uniteBassem.getDeplacement()
+                + "    " + uniteBassem.getVision());
+        caracteristiqueUnite1.setBounds(1000, 150, 370, 80);
+        caracteristiqueUnite1.setFont(new Font("Arial", Font.BOLD, 40));
+
+        caracteristiqueUnite2 = new JLabel("   " + uniteFadi.getAttaque()
+                + "     " + uniteFadi.getDefense()
+                + "    " + uniteFadi.getPVmax()
+                + "    " + uniteFadi.getDeplacement()
+                + "    " + uniteFadi.getVision());
+        caracteristiqueUnite2.setBounds(1000, 215, 370, 80);
+        caracteristiqueUnite2.setFont(new Font("Arial", Font.BOLD, 40));
+
+
+        caracteristiqueUnite3 = new JLabel("   " + uniteDhia.getAttaque()
+                + "     " + uniteDhia.getDefense()
+                + "    " + uniteDhia.getPVmax()
+                + "   " + uniteDhia.getDeplacement()
+                + "   " + uniteDhia.getVision());
+        caracteristiqueUnite3.setBounds(1000, 287, 370, 80);
+        caracteristiqueUnite3.setFont(new Font("Arial", Font.BOLD, 40));
+
+
+        caracteristiqueUnite4 = new JLabel("   " + uniteTom.getAttaque()
+                + "     " + uniteTom.getDefense()
+                + "    " + uniteTom.getPVmax()
+                + "    " + uniteTom.getDeplacement()
+                + "    " + uniteTom.getVision());
+        caracteristiqueUnite4.setBounds(1000, 357, 370, 80);
+        caracteristiqueUnite4.setFont(new Font("Arial", Font.BOLD, 40));
+
+        caracteristiqueUnite5 = new JLabel("   " + uniteMostafa.getAttaque()
+                + "     " + uniteMostafa.getDefense()
+                + "    " + uniteMostafa.getPVmax()
+                + "    " + uniteMostafa.getDeplacement()
+                + "    " + uniteMostafa.getVision());
+        caracteristiqueUnite5.setBounds(1000, 427, 370, 80);
+        caracteristiqueUnite5.setFont(new Font("Arial", Font.BOLD, 40));
+
+        JButton FinTour = new JButton("");
+        FinTour.setBounds(1080, 700, 190, 90);
+        FinTour.setAlignmentX(Component.CENTER_ALIGNMENT);
+        FinTour.setOpaque(false);
+        FinTour.setContentAreaFilled(false);
+        FinTour.setForeground(Color.BLACK);
+        FinTour.setBorder(new RoundBtn(25));
+
 
         layeredPane.add(plateau, JLayeredPane.DEFAULT_LAYER);
         layeredPane.add(imageJeuLabel, JLayeredPane.PALETTE_LAYER);
         layeredPane.add(nomJoueur, JLayeredPane.POPUP_LAYER);
+        layeredPane.add(caracteristiqueUnite1, JLayeredPane.POPUP_LAYER);
+        layeredPane.add(caracteristiqueUnite2, JLayeredPane.POPUP_LAYER);
+        layeredPane.add(caracteristiqueUnite3, JLayeredPane.POPUP_LAYER);
+        layeredPane.add(caracteristiqueUnite4, JLayeredPane.POPUP_LAYER);
+        layeredPane.add(caracteristiqueUnite5, JLayeredPane.POPUP_LAYER);
+        layeredPane.add(FinTour, JLayeredPane.POPUP_LAYER);
 
         champHexagonesPanel = new JPanel(new BorderLayout());
         champHexagonesPanel.setOpaque(false);

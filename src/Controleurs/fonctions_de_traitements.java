@@ -1,7 +1,7 @@
 package Controleurs;
 import javax.swing.UIManager;
 
-import Model.Tour;
+
 import Vue.MenuPrincipal;
 import javax.swing.*;
 import java.awt.*;
