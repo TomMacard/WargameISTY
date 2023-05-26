@@ -279,7 +279,7 @@ public class NouvellePartieInterface extends JPanel {
 
                     // Ajoutez la logique pour gérer la couleur du joueur ici
                     // Par exemple, vous pourriez assigner une couleur prédéfinie basée sur l'index du joueur
-                    String couleurJoueur = "";
+                    Color couleurJoueur = Color.BLACK;
 
                     // Ajoutez la logique pour stocker le nom et la couleur du joueur
                     // Par exemple, vous pourriez ajouter le nom et la couleur à des listes
@@ -413,7 +413,7 @@ public class NouvellePartieInterface extends JPanel {
                 joueurs = new ArrayList<>();
                 for (JTextField textField : textFields) {
                     String nomJoueur = textField.getText();
-                    String couleurJoueur = "";
+                    Color couleurJoueur = Color.RED;
                     Joueur joueur = new Joueur(new ArrayList<>(), false, nomJoueur, couleurJoueur);
                     joueurs.add(joueur);
                 }

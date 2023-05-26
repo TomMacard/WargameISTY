@@ -47,23 +47,35 @@ public class Plateau extends JPanel implements MouseListener {
         int startX = -VariablesGlobales.DECALAGE;  // Adjust these values to position the hexagonal field
         int startY = 0;
 
+
+
+
+        //fonction de coloriage des unités et du joueur correspondant
+
+
+
+
+
         for (int lig = 0; lig < plateauLignes; lig++) {
             for (int col = 0; col < plateauColonnes; col++) {
                 int x = startX + col * 30 * 2;
                 int y = startY + lig * 30 * 2 + (col % 2) * 30;
 
+                Color color = plateauHexColors[lig][col] != null ? plateauHexColors[lig][col] : Color.WHITE;
                 Image image = colorToImage.get(plateauHexColors[lig][col]);
                 drawHexagon(g,x,y,30, image);
 
+
                 if (plateauUnites[lig][col]!=null) {
+                    //check pour 1 unité
+
+                    //check le type d'unité
                     ImageIcon icon = new ImageIcon("src/images/mer.png");
                     if (plateauUnites[lig][col].getUniteType()=="TOM") {
                         icon = new ImageIcon("src/images/uniteTom.png");
                     }
-
                     else if (plateauUnites[lig][col].getUniteType()=="BASSEM") {
                         icon = new ImageIcon("src/images/uniteBassem.png");
-
                     }
                     else if (plateauUnites[lig][col].getUniteType()=="MOSTAFA") {
                         icon = new ImageIcon("src/images/uniteMostafa.png");
@@ -75,10 +87,12 @@ public class Plateau extends JPanel implements MouseListener {
                         icon = new ImageIcon("src/images/uniteFadi.png");
                     }
 
+                    //recupere couleur
+                    g.setColor(plateauUnites[lig][col].getUniteJoueur().getJoueurCouleur());
+                    //dessin sur le tableau
                     Image iconeUnite = icon.getImage();
-                    int imageX = x ;
-                    int imageY = y+10 ;
-                    g.drawImage(iconeUnite, imageX, imageY, 40, 40, this);
+                    g.fillOval(x-8, y+5, 50, 50);
+                    g.drawImage(iconeUnite, x, y+10, 40, 40, this);
                 }
 
             }
