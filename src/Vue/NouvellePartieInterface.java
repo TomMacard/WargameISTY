@@ -1,8 +1,6 @@
 package Vue;
 
-import Model.Plateau;
-import Model.Unite;
-import Model.VariablesGlobales;
+import Model.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,12 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import Model.Joueur;
-import Model.uniteTom;
-import Model.uniteDhia;
-import Model.uniteBassem;
-import Model.uniteFadi;
-import Model.uniteMostafa;
 
 
 public class NouvellePartieInterface extends JPanel {
@@ -45,6 +37,7 @@ public class NouvellePartieInterface extends JPanel {
     private JLabel caracteristiqueUnite3;
     private JLabel caracteristiqueUnite4;
     private JLabel caracteristiqueUnite5;
+    private Jeu jeu;
 
 
 
@@ -258,7 +251,8 @@ public class NouvellePartieInterface extends JPanel {
         supprimerTousChampsNomJoueurs();
 
         JPanel panneauNomJoueurs = new JPanel(new GridLayout(nombreJoueurs, 1));
-        panneauNomJoueurs.setOpaque(false); // Assurez-vous que le panneau est transparent
+        panneauNomJoueurs.setOpaque(false);
+        Color[] couleurs = {Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE, Color.PINK};
 
         for (int i = 1; i <= nombreJoueurs; i++) {
             JLabel label = new JLabel("Joueur " + i + ":");
@@ -270,19 +264,14 @@ public class NouvellePartieInterface extends JPanel {
             panneauTextField.setOpaque(false); // Assurez-vous que le panneau est transparent
             panneauTextField.add(label);
             panneauTextField.add(textField);
-
+            int indexCouleur = (i - 1) % couleurs.length;
             panneauNomJoueurs.add(panneauTextField);
 
             textField.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     String nomJoueur = textField.getText();
+                    Color couleurJoueur = couleurs[indexCouleur];
 
-                    // Ajoutez la logique pour gérer la couleur du joueur ici
-                    // Par exemple, vous pourriez assigner une couleur prédéfinie basée sur l'index du joueur
-                    Color couleurJoueur = Color.BLACK;
-
-                    // Ajoutez la logique pour stocker le nom et la couleur du joueur
-                    // Par exemple, vous pourriez ajouter le nom et la couleur à des listes
                     Joueur joueur = new Joueur(new ArrayList<>(), false, nomJoueur, couleurJoueur);
                     joueurs.add(joueur);
 
@@ -332,14 +321,7 @@ public class NouvellePartieInterface extends JPanel {
         imageJeuLabel = new JLabel(new ImageIcon(imageJeu));
         imageJeuLabel.setBounds(900, 0, 550, 830);
 
-        if (!joueurs.isEmpty()) {
-            nomJoueur = new JLabel("Tour du joueur : " + joueurs.get(0).getJoueurNom());
-        } else {
-            nomJoueur = new JLabel("Aucun joueur");
-        }
 
-        nomJoueur.setFont(new Font("Arial", Font.BOLD, 30));
-        nomJoueur.setBounds(955, 4, 370, 80);
 
         caracteristiqueUnite1 = new JLabel("  " + uniteBassem.getAttaque()
                 + "    " + uniteBassem.getDefense()
@@ -392,15 +374,7 @@ public class NouvellePartieInterface extends JPanel {
         FinTour.setBorder(new RoundBtn(25));
 
 
-        layeredPane.add(plateau, JLayeredPane.DEFAULT_LAYER);
-        layeredPane.add(imageJeuLabel, JLayeredPane.PALETTE_LAYER);
-        layeredPane.add(nomJoueur, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(caracteristiqueUnite1, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(caracteristiqueUnite2, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(caracteristiqueUnite3, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(caracteristiqueUnite4, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(caracteristiqueUnite5, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(FinTour, JLayeredPane.POPUP_LAYER);
+
 
         champHexagonesPanel = new JPanel(new BorderLayout());
         champHexagonesPanel.setOpaque(false);
@@ -408,14 +382,19 @@ public class NouvellePartieInterface extends JPanel {
 
         cardPanel.add(champHexagonesPanel, "champ_hexagones");
 
+        Color[] couleurs = {Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE, Color.PINK};
+
         lancerJeuBouton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 joueurs = new ArrayList<>();
+
                 for (JTextField textField : textFields) {
                     String nomJoueur = textField.getText();
-                    Color couleurJoueur = Color.RED;
+                    int indexJoueur = textFields.indexOf(textField);
+                    Color couleurJoueur = couleurs[indexJoueur];
                     Joueur joueur = new Joueur(new ArrayList<>(), false, nomJoueur, couleurJoueur);
                     joueurs.add(joueur);
+                    jeu = new Jeu(plateau, joueurs);
                 }
 
                 System.out.println("Liste des joueurs :");
@@ -428,5 +407,34 @@ public class NouvellePartieInterface extends JPanel {
                 }
             }
         });
+        FinTour.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (jeu != null) {
+                    System.out.println("Fin du tour");
+                    jeu.jeuBouclePrincipale();
+                } else {
+                    System.out.println("Le jeu n'est pas encore commencé !");
+                    // Vous pouvez également montrer un message à l'utilisateur ici
+                }
+            }
+        });
+
+        if (!joueurs.isEmpty()) {
+            nomJoueur = new JLabel("Tour du joueur : " + jeu.getJeuJoueurActuel().getJoueurNom());
+        } else {
+            nomJoueur = new JLabel("Aucun joueur");
+        }
+        nomJoueur.setFont(new Font("Arial", Font.BOLD, 30));
+        nomJoueur.setBounds(955, 4, 370, 80);
+
+        layeredPane.add(plateau, JLayeredPane.DEFAULT_LAYER);
+        layeredPane.add(imageJeuLabel, JLayeredPane.PALETTE_LAYER);
+        layeredPane.add(nomJoueur, JLayeredPane.POPUP_LAYER);
+        layeredPane.add(caracteristiqueUnite1, JLayeredPane.POPUP_LAYER);
+        layeredPane.add(caracteristiqueUnite2, JLayeredPane.POPUP_LAYER);
+        layeredPane.add(caracteristiqueUnite3, JLayeredPane.POPUP_LAYER);
+        layeredPane.add(caracteristiqueUnite4, JLayeredPane.POPUP_LAYER);
+        layeredPane.add(caracteristiqueUnite5, JLayeredPane.POPUP_LAYER);
+        layeredPane.add(FinTour, JLayeredPane.POPUP_LAYER);
     }
 }
