@@ -6,6 +6,7 @@ public class Jeu {
     private Plateau jeuPlateau;
     private List<Joueur> jeuJoueurs;
     private Joueur jeuJoueurActuel;
+    private int compteur;
 
     public Joueur getJeuJoueurActuel() {
         return jeuJoueurActuel;
@@ -39,23 +40,27 @@ public class Jeu {
         this.jeuPlateau = jeuPlateau;
         this.jeuJoueurs = jeuJoueurs;
         this.jeuJoueurActuel = jeuJoueurs.get(0);
+        this.compteur=0;
     }
 
     public void jeuBouclePrincipale() {
         System.out.println("clic tour suivant");
         if (!jeuConditionVictoire()) {
             System.out.println("pas de gagnant");
-            for (int i = 0; i < this.jeuJoueurs.size(); i++) {
-                this.jeuJoueurActuel= jeuJoueurs.get(i % this.jeuJoueurs.size());
-
-                if (false ) {//jeuJoueurNaPlusDUnites()) {
-                    System.out.println("Joueur éliminé et ne joue pas : "+this.jeuJoueurActuel.getJoueurNom());
-                    JOptionPane.showMessageDialog(null,"Joueur éliminé et ne joue pas : "+this.jeuJoueurActuel.getJoueurNom(), "Joueur Eliminé", JOptionPane.INFORMATION_MESSAGE);
-                }
-                else {
-                    System.out.println("Tour du joueur : "+this.jeuJoueurActuel.getJoueurNom());
-                    JOptionPane.showMessageDialog(null,"Tour du joueur : "+this.jeuJoueurActuel.getJoueurNom(), "Tour Suivant", JOptionPane.INFORMATION_MESSAGE);
-                }
+            if (compteur==jeuJoueurs.size()-1) {
+                compteur=0;
+            }
+            else {
+                compteur++;
+            }
+            this.jeuJoueurActuel= jeuJoueurs.get(compteur);
+            if (false ) {//jeuJoueurNaPlusDUnites()) {
+                System.out.println("Joueur éliminé et ne joue pas : "+this.jeuJoueurActuel.getJoueurNom());
+                JOptionPane.showMessageDialog(null,"Joueur éliminé et ne joue pas : "+this.jeuJoueurActuel.getJoueurNom(), "Joueur Eliminé", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else {
+                System.out.println("Tour du joueur : "+this.jeuJoueurActuel.getJoueurNom());
+                JOptionPane.showMessageDialog(null,"Tour du joueur : "+this.jeuJoueurActuel.getJoueurNom(), "Tour Suivant", JOptionPane.INFORMATION_MESSAGE);
             }
             //regen vie
             jeuRegenDeplacement();
