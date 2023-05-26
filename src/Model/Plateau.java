@@ -47,14 +47,7 @@ public class Plateau extends JPanel implements MouseListener {
         int startX = -VariablesGlobales.DECALAGE;  // Adjust these values to position the hexagonal field
         int startY = 0;
 
-
-
-
         //fonction de coloriage des unités et du joueur correspondant
-
-
-
-
 
         for (int lig = 0; lig < plateauLignes; lig++) {
             for (int col = 0; col < plateauColonnes; col++) {
