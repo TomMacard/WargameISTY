@@ -48,6 +48,7 @@ public class NouvellePartieInterface extends JPanel {
 
 
 
+
     public List<Joueur> getJoueurs() {
         return joueurs;
     }
@@ -258,7 +259,9 @@ public class NouvellePartieInterface extends JPanel {
         supprimerTousChampsNomJoueurs();
 
         JPanel panneauNomJoueurs = new JPanel(new GridLayout(nombreJoueurs, 1));
-        panneauNomJoueurs.setOpaque(false); // Assurez-vous que le panneau est transparent
+        panneauNomJoueurs.setOpaque(false);
+        Color[] couleurs = {Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE, Color.PINK};
+
 
         for (int i = 1; i <= nombreJoueurs; i++) {
             JLabel label = new JLabel("Joueur " + i + ":");
@@ -272,17 +275,14 @@ public class NouvellePartieInterface extends JPanel {
             panneauTextField.add(textField);
 
             panneauNomJoueurs.add(panneauTextField);
+            int indexCouleur = (i - 1) % couleurs.length;
 
             textField.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     String nomJoueur = textField.getText();
 
-                    // Ajoutez la logique pour gérer la couleur du joueur ici
-                    // Par exemple, vous pourriez assigner une couleur prédéfinie basée sur l'index du joueur
-                    String couleurJoueur = "";
-
-                    // Ajoutez la logique pour stocker le nom et la couleur du joueur
-                    // Par exemple, vous pourriez ajouter le nom et la couleur à des listes
+                    //Color couleurJoueur = couleurs[indexCouleur];
+                    String couleurJoueur="";
                     Joueur joueur = new Joueur(new ArrayList<>(), false, nomJoueur, couleurJoueur);
                     joueurs.add(joueur);
 
