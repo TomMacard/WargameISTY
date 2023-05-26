@@ -33,7 +33,6 @@ public class Plateau extends JPanel implements MouseListener {
         colorToImage.put(Color.GREEN, new ImageIcon("src/images/plaine.png").getImage());
         this.nouvellePartieInterface = nouvellePartieInterface;
 
-
         assignRandomColors();
         plateauAttributionCases();
         plateauAttributionUnites(nouvellePartieInterface.getJoueurs());

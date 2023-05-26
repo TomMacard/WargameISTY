@@ -39,29 +39,31 @@ public class Jeu {
         this.jeuPlateau = jeuPlateau;
         this.jeuJoueurs = jeuJoueurs;
         this.jeuJoueurActuel = jeuJoueurs.get(0);
-        jeuBouclePrincipale();
     }
 
     public void jeuBouclePrincipale() {
-        while (!jeuConditionVictoire()) {
+        System.out.println("clic tour suivant");
+        if (!jeuConditionVictoire()) {
+            System.out.println("pas de gagnant");
             for (int i = 0; i < this.jeuJoueurs.size(); i++) {
                 this.jeuJoueurActuel= jeuJoueurs.get(i % this.jeuJoueurs.size());
-                if (jeuJoueurNaPlusDUnites()) {
+
+                if (false ) {//jeuJoueurNaPlusDUnites()) {
                     System.out.println("Joueur éliminé et ne joue pas : "+this.jeuJoueurActuel.getJoueurNom());
                     JOptionPane.showMessageDialog(null,"Joueur éliminé et ne joue pas : "+this.jeuJoueurActuel.getJoueurNom(), "Joueur Eliminé", JOptionPane.INFORMATION_MESSAGE);
                 }
-                /*else {
-                    while (1==1) {
-                        System.out.println("Tour du joueur : "+this.jeuJoueurActuel.getJoueurNom());
-                        JOptionPane.showMessageDialog(null,"Tour du joueur : "+this.jeuJoueurActuel.getJoueurNom(), "Tour Suivant", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                }*/
+                else {
+                    System.out.println("Tour du joueur : "+this.jeuJoueurActuel.getJoueurNom());
+                    JOptionPane.showMessageDialog(null,"Tour du joueur : "+this.jeuJoueurActuel.getJoueurNom(), "Tour Suivant", JOptionPane.INFORMATION_MESSAGE);
+                }
             }
             //regen vie
             jeuRegenDeplacement();
         }
-        System.out.println("Jeu Fini");
-        JOptionPane.showMessageDialog(null,"Jeu Fini","Jeu Fini", JOptionPane.INFORMATION_MESSAGE);
+        else {
+            System.out.println("Jeu Fini");
+            JOptionPane.showMessageDialog(null,"Jeu Fini","Jeu Fini", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
     public boolean jeuConditionVictoire() {
