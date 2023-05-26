@@ -17,8 +17,6 @@ public class fonctions_de_traitements {
         String buttonStyle = UIManager.getSystemLookAndFeelClassName();
         UIManager.setLookAndFeel(buttonStyle);
 
-
-
         Dimension size = new Dimension(1400, 830);
         MenuPrincipal menuPrincipal = new MenuPrincipal();
         menuPrincipal.setBorder(BorderFactory.createEmptyBorder());

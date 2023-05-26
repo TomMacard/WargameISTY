@@ -249,7 +249,7 @@ public class NouvellePartieInterface extends JPanel {
 
     private void creerChampsNomJoueurs(JPanel textFieldPanel) {
         supprimerTousChampsNomJoueurs();
-
+        joueurs = new ArrayList<>();
         JPanel panneauNomJoueurs = new JPanel(new GridLayout(nombreJoueurs, 1));
         panneauNomJoueurs.setOpaque(false);
         Color[] couleurs = {Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE, Color.PINK};
@@ -295,6 +295,7 @@ public class NouvellePartieInterface extends JPanel {
     }
 
 
+
     private void supprimerTousChampsNomJoueurs() {
         Component[] composants = panneauContenu.getComponents();
         for (Component composant : composants) {
@@ -304,12 +305,18 @@ public class NouvellePartieInterface extends JPanel {
         }
     }
 
+
+
     private void createChampHexagones() {
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(1400, 830));
 
         Plateau plateau = new Plateau(VariablesGlobales.X_MAX, VariablesGlobales.Y_MAX, this);
         plateau.setBounds(0, 0, 1400, 830);
+
+        nomJoueur = new JLabel("Tour du joueur 1 ");
+        nomJoueur.setFont(new Font("Arial", Font.BOLD, 30));
+        nomJoueur.setBounds(955, 4, 370, 80);
 
         BufferedImage imageJeu = null;
         try {
@@ -389,11 +396,12 @@ public class NouvellePartieInterface extends JPanel {
                 joueurs = new ArrayList<>();
 
                 for (JTextField textField : textFields) {
-                    String nomJoueur = textField.getText();
+                    String nomJoueurText = textField.getText();
                     int indexJoueur = textFields.indexOf(textField);
                     Color couleurJoueur = couleurs[indexJoueur];
-                    Joueur joueur = new Joueur(new ArrayList<>(), false, nomJoueur, couleurJoueur);
+                    Joueur joueur = new Joueur(new ArrayList<>(), false, nomJoueurText, couleurJoueur);
                     joueurs.add(joueur);
+                    System.out.println("Joueur ajouté: " + joueur.getJoueurNom());
                     jeu = new Jeu(plateau, joueurs);
                 }
 
@@ -407,11 +415,18 @@ public class NouvellePartieInterface extends JPanel {
                 }
             }
         });
+
         FinTour.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (jeu != null) {
+                    System.out.println("Jeu : " + jeu);
+                    System.out.println("Joueur actuel avant la fin du tour : " + jeu.getJeuJoueurActuel().getJoueurNom());
                     System.out.println("Fin du tour");
                     jeu.jeuBouclePrincipale();
+                    System.out.println("Joueur actuel après la fin du tour : " + jeu.getJeuJoueurActuel().getJoueurNom());
+                    nomJoueur.setText("Tour : " + jeu.getJeuJoueurActuel().getJoueurNom());
+                    nomJoueur.revalidate();
+
                 } else {
                     System.out.println("Le jeu n'est pas encore commencé !");
                     // Vous pouvez également montrer un message à l'utilisateur ici
@@ -419,11 +434,6 @@ public class NouvellePartieInterface extends JPanel {
             }
         });
 
-        if (!joueurs.isEmpty()) {
-            nomJoueur = new JLabel("Tour du joueur : " + jeu.getJeuJoueurActuel().getJoueurNom());
-        } else {
-            nomJoueur = new JLabel("Aucun joueur");
-        }
         nomJoueur.setFont(new Font("Arial", Font.BOLD, 30));
         nomJoueur.setBounds(955, 4, 370, 80);
 

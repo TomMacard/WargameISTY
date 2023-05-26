@@ -120,7 +120,7 @@ public class AideInterface extends JPanel {
 
 
         JLabel background = new JLabel(new ImageIcon(backgroundImage));
-        background.setSize(1350, 850);  // Set the size of the JLabel to match the image
+        background.setSize(1400, 820);  // Set the size of the JLabel to match the image
 
         retourButton = new JButton("");
         //retourButton.setBorder(new RoundBtn(25));
@@ -143,7 +143,7 @@ public class AideInterface extends JPanel {
         flowPanel.setBounds(540, 760, 170, 52);  // Set the position and size of the panel
 
         JLayeredPane layeredPane = new JLayeredPane();
-        layeredPane.setPreferredSize(new Dimension(1200, 850));  // Set the preferred size to match the image
+        layeredPane.setPreferredSize(new Dimension(1400, 830));  // Set the preferred size to match the image
 
         // Add the background label to the default layer
         layeredPane.add(background, JLayeredPane.DEFAULT_LAYER);
