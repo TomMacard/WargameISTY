@@ -41,8 +41,6 @@ public class fonctions_de_traitements {
         UIManager.setLookAndFeel(buttonStyle);
         playMusic();
 
-
-
         Dimension size = new Dimension(1400, 830);
         MenuPrincipal menuPrincipal = new MenuPrincipal();
         menuPrincipal.setBorder(BorderFactory.createEmptyBorder());
