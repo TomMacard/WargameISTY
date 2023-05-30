@@ -56,7 +56,7 @@ public class Jeu {
             this.jeuJoueurActuel= jeuJoueurs.get(compteur);
             this.jeuPlateau.plateauJoueurActuel=jeuJoueurActuel;
             System.out.println("Joueur actuel mis à jour : " + this.jeuJoueurActuel.getJoueurNom());
-            System.out.println("Joueur actuel mis à jour sur plateau : " + this.jeuPlateau.plateauJoueurActuel.getJoueurNom());
+            //System.out.println("Joueur actuel mis à jour sur plateau : " + this.jeuPlateau.plateauJoueurActuel.getJoueurNom());
             if (false ) {//jeuJoueurNaPlusDUnites()) {
                 System.out.println("Joueur éliminé et ne joue pas : "+this.jeuJoueurActuel.getJoueurNom());
                 JOptionPane.showMessageDialog(null,"Joueur éliminé et ne joue pas : "+this.jeuJoueurActuel.getJoueurNom(), "Joueur Eliminé", JOptionPane.INFORMATION_MESSAGE);
