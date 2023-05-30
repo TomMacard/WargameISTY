@@ -54,14 +54,18 @@ public class Jeu {
                 compteur++;
             }
             this.jeuJoueurActuel= jeuJoueurs.get(compteur);
+            this.jeuPlateau.plateauJoueurActuel=jeuJoueurActuel;
+            System.out.println("Joueur actuel mis à jour : " + this.jeuJoueurActuel.getJoueurNom());
+            //System.out.println("Joueur actuel mis à jour sur plateau : " + this.jeuPlateau.plateauJoueurActuel.getJoueurNom());
             if (false ) {//jeuJoueurNaPlusDUnites()) {
                 System.out.println("Joueur éliminé et ne joue pas : "+this.jeuJoueurActuel.getJoueurNom());
                 JOptionPane.showMessageDialog(null,"Joueur éliminé et ne joue pas : "+this.jeuJoueurActuel.getJoueurNom(), "Joueur Eliminé", JOptionPane.INFORMATION_MESSAGE);
             }
             else {
+                System.out.println("Tour du joueur : "+this.jeuJoueurActuel.getJoueurNom());
                 JOptionPane.showMessageDialog(null,"Tour du joueur : "+this.jeuJoueurActuel.getJoueurNom(), "Tour Suivant", JOptionPane.INFORMATION_MESSAGE);
             }
-            //regen vie
+            //regen vie et deplacement
             jeuRegenDeplacement();
         }
         else {
@@ -92,6 +96,14 @@ public class Jeu {
     public void jeuRegenDeplacement() {
         for (Joueur joueur : this.jeuJoueurs) {
             for (Unite unite : joueur.joueurUnites) {
+                if (unite.getUniteJoueur()==this.jeuJoueurActuel) {
+                    if (unite.getUniteDeplacementCourant()==unite.getUnitePotDeplacement()){
+                        unite.setUnitePVCourant((int) unite.getUnitePVCourant()*11/10);
+                        if (unite.getUnitePVCourant()>unite.getUnitePVmax()) {
+                            unite.setUnitePVCourant(unite.getUnitePVmax());
+                        }
+                    }
+                }
                 unite.setUniteDeplacementCourant(unite.getUnitePotDeplacement());
             }
         }
