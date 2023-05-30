@@ -1,5 +1,7 @@
 package Model;
 import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Unite {
     private int unitePotAttaque;
@@ -10,10 +12,10 @@ public class Unite {
     private int unitePortee;
     private int uniteX;
     private int uniteY;
-    private int unitePVCourant;
+    private static int unitePVCourant;
     private String uniteType;
     private int uniteDeplacementCourant;
-    private Joueur uniteJoueur;
+    private Joueur uniteJoueur;private List<Runnable> observers = new ArrayList<>();
 
     public Unite(int potAttaque, int potDefense, int PVmax, int potDeplacement, int vision, int portee,
                  int x, int y, int PVcourant, String type, Joueur uniteJoueur) {
@@ -73,7 +75,7 @@ public class Unite {
         return uniteY;
     }
 
-    public int getUnitePVCourant() {
+    public static int getUnitePVCourant() {
         return unitePVCourant;
     }
 
@@ -119,7 +121,9 @@ public class Unite {
     }
 
     public void setUnitePVCourant(int unitePVCourant) {
+
         this.unitePVCourant = unitePVCourant;
+        notifyObservers();
     }
 
     public void setUniteType(String uniteType) {
@@ -141,6 +145,20 @@ public class Unite {
         return tuile;
     }
 
+    public void addObserver(Runnable observer) {
+        observers.add(observer);
+    }
+
+    public void removeObserver(Runnable observer) {
+        observers.remove(observer);
+    }
+
+    protected void notifyObservers() {
+        for (Runnable observer : observers) {
+            observer.run();
+        }
+    }
+
     public void attaqueEtDefense(Unite cible, Plateau plateau) {
 
         // Effectuer l'attaque
@@ -154,6 +172,7 @@ public class Unite {
         // Réduire le potentiel de défense de la cible en fonction du potentiel d'attaque de l'attaquant
         pvCourant -= (potentielAttaque * bonusDefense) / 100;
         int resultat = (int) pvCourant;
+        System.out.println("Le PV restant est : " + pvCourant);
 
         // Si le potentiel de défense est négatif ou nul, la cible est détruite
         if (pvCourant <= 0) {
@@ -203,5 +222,6 @@ public class Unite {
             setUniteDeplacementCourant(potentielDeplacement);
             plateau.plateauMouvement(uniteX,uniteY,destinationX,destinationY);
         }
+        System.out.println("Le déplacement restant est : " + getUniteDeplacementCourant());
     }
 }

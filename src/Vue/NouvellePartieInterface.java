@@ -138,11 +138,6 @@ public class NouvellePartieInterface extends JPanel {
                 createChampHexagones();
                 cardLayout.show(cardPanel, "champ_hexagones");
                 joueurs = new ArrayList<Joueur>();
-
-                System.out.println("Liste des joueurs :");
-                for (Joueur joueur : joueurs) {
-                    System.out.println(joueur.getJoueurNom());
-                }
             }
         });
 
@@ -163,9 +158,6 @@ public class NouvellePartieInterface extends JPanel {
         sl_panneauContenu.putConstraint(SpringLayout.HORIZONTAL_CENTER, lancerJeuBouton, 0, SpringLayout.HORIZONTAL_CENTER, panneauContenu);
         sl_panneauContenu.putConstraint(SpringLayout.NORTH, lancerJeuBouton, 628, SpringLayout.SOUTH, comboBox);
 
-        //sl_panneauContenu.putConstraint(SpringLayout.HORIZONTAL_CENTER, numeroJoueur, 0, SpringLayout.HORIZONTAL_CENTER, panneauContenu);
-        //sl_panneauContenu.putConstraint(SpringLayout.NORTH, numeroJoueur, 628, SpringLayout.SOUTH, comboBox);
-
         lancerJeuBouton.setAlignmentX(Component.CENTER_ALIGNMENT);
         lancerJeuBouton.setOpaque(false);
         lancerJeuBouton.setContentAreaFilled(false);
@@ -180,8 +172,6 @@ public class NouvellePartieInterface extends JPanel {
         comboBox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String optionSelectionnee = (String) comboBox.getSelectedItem();
-                // Faites quelque chose avec l'option sélectionnée (par exemple, afficher un message)
-                System.out.println("Option sélectionnée : " + optionSelectionnee);
             }
         });
 
@@ -275,11 +265,6 @@ public class NouvellePartieInterface extends JPanel {
                     Joueur joueur = new Joueur(new ArrayList<>(), false, nomJoueur, couleurJoueur);
                     joueurs.add(joueur);
 
-                    System.out.println("Liste des joueurs :");
-                    for (Joueur j : joueurs) {
-                        System.out.println(j.getJoueurNom());
-                    }
-
                     // Désactivez le champ de texte une fois que le joueur a soumis son nom
                     textField.setEnabled(false);
                 }
@@ -321,18 +306,15 @@ public class NouvellePartieInterface extends JPanel {
         BufferedImage imageJeu = null;
         try {
             imageJeu = ImageIO.read(new File("src/images/barreFinale.png"));
-            System.out.println("Image chargée : " + imageJeu);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
         imageJeuLabel = new JLabel(new ImageIcon(imageJeu));
         imageJeuLabel.setBounds(900, 0, 550, 830);
 
-
-
         caracteristiqueUnite1 = new JLabel("  " + uniteBassem.getAttaque()
                 + "    " + uniteBassem.getDefense()
-                + "    " + uniteBassem.getPVmax()
+                + "    " + uniteBassem.getUnitePVCourant()
                 + "    " + uniteBassem.getDeplacement()
                 + "    " + uniteBassem.getVision());
         caracteristiqueUnite1.setBounds(1000, 150, 370, 80);
@@ -401,17 +383,10 @@ public class NouvellePartieInterface extends JPanel {
                     Color couleurJoueur = couleurs[indexJoueur];
                     Joueur joueur = new Joueur(new ArrayList<>(), false, nomJoueurText, couleurJoueur);
                     joueurs.add(joueur);
-                    System.out.println("Joueur ajouté: " + joueur.getJoueurNom());
                     jeu = new Jeu(plateau, joueurs);
-                }
-
-                System.out.println("Liste des joueurs :");
-                for (Joueur j : joueurs) {
-                    System.out.println(j.getJoueurNom());
                 }
                 if (!joueurs.isEmpty()) {
                     nomJoueur.setText("Tour du joueur : " + joueurs.get(0).getJoueurNom());
-                    System.out.println("Tour du joueur : " + joueurs.get(0).getJoueurNom());
                 }
             }
         });
@@ -419,11 +394,8 @@ public class NouvellePartieInterface extends JPanel {
         FinTour.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (jeu != null) {
-                    System.out.println("Jeu : " + jeu);
-                    System.out.println("Joueur actuel avant la fin du tour : " + jeu.getJeuJoueurActuel().getJoueurNom());
                     System.out.println("Fin du tour");
                     jeu.jeuBouclePrincipale();
-                    System.out.println("Joueur actuel après la fin du tour : " + jeu.getJeuJoueurActuel().getJoueurNom());
                     nomJoueur.setText("Tour : " + jeu.getJeuJoueurActuel().getJoueurNom());
                     nomJoueur.revalidate();
 

@@ -54,13 +54,11 @@ public class Jeu {
                 compteur++;
             }
             this.jeuJoueurActuel= jeuJoueurs.get(compteur);
-            System.out.println("Joueur actuel mis à jour : " + this.jeuJoueurActuel.getJoueurNom());
             if (false ) {//jeuJoueurNaPlusDUnites()) {
                 System.out.println("Joueur éliminé et ne joue pas : "+this.jeuJoueurActuel.getJoueurNom());
                 JOptionPane.showMessageDialog(null,"Joueur éliminé et ne joue pas : "+this.jeuJoueurActuel.getJoueurNom(), "Joueur Eliminé", JOptionPane.INFORMATION_MESSAGE);
             }
             else {
-                System.out.println("Tour du joueur : "+this.jeuJoueurActuel.getJoueurNom());
                 JOptionPane.showMessageDialog(null,"Tour du joueur : "+this.jeuJoueurActuel.getJoueurNom(), "Tour Suivant", JOptionPane.INFORMATION_MESSAGE);
             }
             //regen vie
