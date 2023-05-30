@@ -173,7 +173,6 @@ public class Unite implements Serializable {
         // Réduire le potentiel de défense de la cible en fonction du potentiel d'attaque de l'attaquant
         pvCourant -= (potentielAttaque * bonusDefense) / 100;
         int resultat = (int) pvCourant;
-        System.out.println("Le PV restant est : " + pvCourant);
 
         // Si le potentiel de défense est négatif ou nul, la cible est détruite
         if (pvCourant <= 0) {
@@ -192,6 +191,7 @@ public class Unite implements Serializable {
             msg ="Attaque : "+this.getUniteType()+" a attaqué "+ cible.getUniteType()+" et enlevé "+(potentielAttaque * bonusDefense) / 100+" PV. PV Restant : "+cible.getUnitePVCourant();
         }
         JOptionPane.showMessageDialog(null,msg, "Attaque Effectuée", JOptionPane.INFORMATION_MESSAGE);
+        System.out.println("Le PV restant est : " + pvCourant);
     }
 
 
