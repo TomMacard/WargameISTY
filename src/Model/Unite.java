@@ -1,9 +1,10 @@
 package Model;
 import javax.swing.JOptionPane;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Unite {
+public class Unite implements Serializable {
     private int unitePotAttaque;
     private int unitePotDefense;
     private int unitePVmax;

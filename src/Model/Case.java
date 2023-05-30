@@ -1,8 +1,9 @@
 package Model;
 
 import java.awt.*;
+import java.io.Serializable;
 
-public class Case {
+public class Case implements Serializable {
     private String caseType;
     private int caseCoutDeplacement;
     private int caseDefense;
