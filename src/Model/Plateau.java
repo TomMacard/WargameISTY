@@ -4,11 +4,12 @@ import Vue.NouvellePartieInterface;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Random;
 import java.util.HashMap;
 
-public class Plateau extends JPanel implements MouseListener {
+public class Plateau extends JPanel implements MouseListener, Serializable {
     private NouvellePartieInterface nouvellePartieInterface;
     private int plateauLignes;
     private int plateauColonnes;
@@ -147,7 +148,7 @@ public class Plateau extends JPanel implements MouseListener {
 
                 if (unitecliquee!=null) {// && unitecliquee.getUniteJoueur()==this.plateauJoueurActuel) {
                     premierClic = e;
-                    System.out.println("1er clic");
+                    //System.out.println("1er clic");
                     //System.out.println("TOUR DU JOUEUR : "+this.plateauJoueurActuel.getJoueurNom());
 
                 }
@@ -157,15 +158,15 @@ public class Plateau extends JPanel implements MouseListener {
                 System.out.println("2eme clic");
                 Case casecliquee2 = plateauObtenirCase(lig, col);
                 Unite unitecliquee2 = plateauObtenirUnite(lig,col);
-                System.out.println(casecliquee.caseVoisins(casecliquee2));
+                //System.out.println(casecliquee.caseVoisins(casecliquee2));
 
                 if (unitecliquee != null) {
-                    if (casecliquee.caseVoisins(casecliquee2)) { //unitecliquee.getUniteJoueur()== )
+                    if (1==1) {//casecliquee.caseVoisins(casecliquee2)) { //unitecliquee.getUniteJoueur()== )
                         //System.out.println("tentative déplacement");
                         int xarrivee = casecliquee2.getCaseX();
                         int yarrivee = casecliquee2.getCaseY();
                         unitecliquee.UniteDeplacementElementaire(xarrivee, yarrivee, this);
-                        System.out.println("Deplacement effectué");
+                        //System.out.println("Deplacement effectué");
                         unitecliquee = null;
                         casecliquee = null;
                     }
@@ -177,11 +178,9 @@ public class Plateau extends JPanel implements MouseListener {
                 deuxiemeClic = null;
             }
 
-            /*
-
 
             //Debug
-            System.out.println("==========");
+            //System.out.println("==========");
             String msg="";
             if (casecliquee != null) {
                 msg=msg+"Nom Case  : "+casecliquee.getCaseType()+" Coord case: "+casecliquee.getCaseX()+ ", "+casecliquee.getCaseY()+"\n";
@@ -193,7 +192,7 @@ public class Plateau extends JPanel implements MouseListener {
                 msg=msg+"Pas d'unités sur cette Case";
             }
             System.out.println(msg);
-            System.out.println("==========");
+            //System.out.println("==========");
             //fin Debug */
 
         }

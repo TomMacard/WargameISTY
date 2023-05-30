@@ -1,8 +1,10 @@
 package Model;
+import java.io.*;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-public class Jeu {
+
+public class Jeu implements Serializable {
     private Plateau jeuPlateau;
     private List<Joueur> jeuJoueurs;
     private Joueur jeuJoueurActuel;
@@ -45,6 +47,8 @@ public class Jeu {
 
     public void jeuBouclePrincipale() {
         System.out.println("clic tour suivant");
+        String cheminFichier = "src/sauvegarde/sauvegarde.sav";
+        sauvegarderPartie(cheminFichier);
         if (!jeuConditionVictoire()) {
             System.out.println("pas de gagnant");
             if (compteur==jeuJoueurs.size()-1) {
@@ -107,6 +111,32 @@ public class Jeu {
                 unite.setUniteDeplacementCourant(unite.getUnitePotDeplacement());
             }
         }
+    }
+    public void sauvegarderPartie(String cheminFichier) {
+        try {
+            File fichier = new File(cheminFichier);
+            if (!fichier.exists()) {
+                fichier.createNewFile();
+            }
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichier));
+            oos.writeObject(this);
+            oos.close();
+            System.out.println("Sauvegarde réussie !");
+        } catch (IOException e) {
+            System.out.println("Erreur lors de la sauvegarde : " + e.getMessage());
+        }
+    }
+    public static Jeu chargerPartie(String cheminFichier) {
+        Jeu jeu = null;
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(cheminFichier));
+            jeu = (Jeu) ois.readObject();
+            ois.close();
+            System.out.println("Chargement réussi !");
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Erreur lors du chargement : " + e.getMessage());
+        }
+        return jeu;
     }
 
 }

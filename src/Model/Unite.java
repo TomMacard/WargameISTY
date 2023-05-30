@@ -1,9 +1,10 @@
 package Model;
 import javax.swing.JOptionPane;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Unite {
+public class Unite implements Serializable {
     private int unitePotAttaque;
     private int unitePotDefense;
     private int unitePVmax;
@@ -170,11 +171,11 @@ public class Unite {
         String msg=null;
 
         // Réduire le potentiel de défense de la cible en fonction du potentiel d'attaque de l'attaquant
-        pvCourant -= (potentielAttaque * bonusDefense) / 100;
+        pvCourant -= ((potentielAttaque-cible.getUnitePotDefense())* bonusDefense) / 100;
         int resultat = (int) pvCourant;
 
         // Si le potentiel de défense est négatif ou nul, la cible est détruite
-        if (pvCourant <= 0) {
+        if (resultat <= 0) {
             Joueur joueurProprietaire = getUniteJoueur();
             if (joueurProprietaire != null) {
                 joueurProprietaire.getJoueurUnites().remove(cible);
@@ -186,8 +187,8 @@ public class Unite {
             }
         }
         else {
-            cible.setUnitePVCourant(pvCourant);
-            msg ="Attaque : "+this.getUniteType()+" a attaqué "+ cible.getUniteType()+" et enlevé "+(potentielAttaque * bonusDefense) / 100+" PV. PV Restant : "+cible.getUnitePVCourant();
+            cible.setUnitePVCourant(resultat);
+            msg ="Attaque : "+this.getUniteType()+" a attaqué "+ cible.getUniteType()+" et enlevé "+((potentielAttaque-cible.getUnitePotDefense())* bonusDefense) / 100+" PV. PV Restant : "+cible.getUnitePVCourant();
         }
         JOptionPane.showMessageDialog(null,msg, "Attaque Effectuée", JOptionPane.INFORMATION_MESSAGE);
         System.out.println("Le PV restant est : " + pvCourant);

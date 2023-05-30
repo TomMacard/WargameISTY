@@ -1,6 +1,7 @@
 package Vue;
 
 import Controleurs.MenuPrincipalController;
+import Model.Jeu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -191,6 +192,14 @@ public class MenuPrincipal extends JPanel implements ActionListener {
             }
         });
 
+        reprendrePartieButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                String cheminFichier = "src/sauvegarde/sauvegarde.sav";
+                Jeu jeuCharge = Jeu.chargerPartie(cheminFichier);
+                jeuCharge.jeuBouclePrincipale();
+            }
+        });
+
         aideButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardPanel, AIDE_PANEL);
@@ -217,6 +226,9 @@ public class MenuPrincipal extends JPanel implements ActionListener {
         } else if (e.getSource() == reprendrePartieButton) {
             // Code pour reprendre une partie enregistrée
             System.out.println("Reprendre partie");
+            String cheminFichier = "src/sauvegarde/sauvegarde.sav";
+            Jeu jeuCharge = Jeu.chargerPartie(cheminFichier);
+
         } else if (e.getSource() == aideButton) {
             // Code pour afficher l'aide du jeu
             System.out.println("aide");
