@@ -406,6 +406,7 @@ public class NouvellePartieInterface extends JPanel {
             }
         });
 
+
         nomJoueur.setFont(new Font("Arial", Font.BOLD, 30));
         nomJoueur.setBounds(955, 4, 370, 80);
 
