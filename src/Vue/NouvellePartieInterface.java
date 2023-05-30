@@ -410,8 +410,8 @@ public class NouvellePartieInterface extends JPanel {
             }
         });
 
-        textArea = new JTextArea("This is a JTextArea");
-        textArea.setBounds(970, 510, 410, 170);
+        textArea = new JTextArea("");
+        textArea.setBounds(970, 570, 400, 100);
         textArea.setFont(new Font("Arial", Font.PLAIN, 20));
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
@@ -435,8 +435,6 @@ public class NouvellePartieInterface extends JPanel {
         layeredPane.add(caracteristiqueUnite4, JLayeredPane.POPUP_LAYER);
         layeredPane.add(caracteristiqueUnite5, JLayeredPane.POPUP_LAYER);
         layeredPane.add(FinTour, JLayeredPane.POPUP_LAYER);
-
-
     }
 
 }

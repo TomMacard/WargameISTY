@@ -174,6 +174,7 @@ public class Unite implements Serializable {
         pvCourant -= ((potentielAttaque-cible.getUnitePotDefense())* bonusDefense) / 100;
         int resultat = (int) pvCourant;
 
+
         // Si le potentiel de défense est négatif ou nul, la cible est détruite
         if (resultat <= 0) {
             Joueur joueurProprietaire = getUniteJoueur();
@@ -189,9 +190,9 @@ public class Unite implements Serializable {
         else {
             cible.setUnitePVCourant(resultat);
             msg ="Attaque : "+this.getUniteType()+" a attaqué "+ cible.getUniteType()+" et enlevé "+((potentielAttaque-cible.getUnitePotDefense())* bonusDefense) / 100+" PV. PV Restant : "+cible.getUnitePVCourant();
+            System.out.println("Le PV restant est : " + getUnitePVCourant());
         }
         JOptionPane.showMessageDialog(null,msg, "Attaque Effectuée", JOptionPane.INFORMATION_MESSAGE);
-        System.out.println("Le PV restant est : " + pvCourant);
     }
 
 
@@ -223,6 +224,6 @@ public class Unite implements Serializable {
             setUniteDeplacementCourant(potentielDeplacement);
             plateau.plateauMouvement(uniteX,uniteY,destinationX,destinationY);
         }
-        System.out.println("Le déplacement restant est : " + getUniteDeplacementCourant());
+        System.out.println("Le deplacement restant est : " + getUniteDeplacementCourant());
     }
 }

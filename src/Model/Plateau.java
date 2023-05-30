@@ -191,7 +191,7 @@ public class Plateau extends JPanel implements MouseListener, Serializable {
             if (unitecliquee == null) {
                 msg=msg+"Pas d'unités sur cette Case";
             }
-            System.out.println(msg);
+            //System.out.println(msg);
             //System.out.println("==========");
             //fin Debug */
 
