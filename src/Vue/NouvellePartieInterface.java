@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
@@ -38,6 +39,9 @@ public class NouvellePartieInterface extends JPanel {
     private JLabel caracteristiqueUnite4;
     private JLabel caracteristiqueUnite5;
     private Jeu jeu;
+    private JTextArea textArea_debug;
+    private JTextArea textArea;
+
 
 
 
@@ -406,6 +410,18 @@ public class NouvellePartieInterface extends JPanel {
             }
         });
 
+        textArea = new JTextArea("This is a JTextArea");
+        textArea.setBounds(970, 510, 410, 170);
+        textArea.setFont(new Font("Arial", Font.PLAIN, 20));
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+
+        CustomOutputStream cos = new CustomOutputStream(textArea);
+        PrintStream printStream = new PrintStream(cos);
+        System.setOut(printStream);
+
+        layeredPane.add(textArea, JLayeredPane.POPUP_LAYER);
+
 
         nomJoueur.setFont(new Font("Arial", Font.BOLD, 30));
         nomJoueur.setBounds(955, 4, 370, 80);
@@ -419,5 +435,8 @@ public class NouvellePartieInterface extends JPanel {
         layeredPane.add(caracteristiqueUnite4, JLayeredPane.POPUP_LAYER);
         layeredPane.add(caracteristiqueUnite5, JLayeredPane.POPUP_LAYER);
         layeredPane.add(FinTour, JLayeredPane.POPUP_LAYER);
+
+
     }
+
 }
