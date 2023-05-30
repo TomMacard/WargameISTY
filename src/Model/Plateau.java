@@ -183,7 +183,6 @@ public class Plateau extends JPanel implements MouseListener {
         repaint();
     }
 
-    // Function to set the color of a hexagon at specified coordinates
     public void setHexagonColor(int lig, int col, Color color) {
         if (lig >= 0 && lig < plateauLignes && col >= 0 && col < plateauColonnes) {
             plateauHexColors[lig][col] = color;
