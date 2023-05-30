@@ -16,8 +16,15 @@ public class Plateau extends JPanel implements MouseListener {
     public Case[][] plateauCases;
     public Unite[][] plateauUnites;
     private HashMap<Color, Image> colorToImage;
+    public Joueur plateauJoueurActuel;
 
+    public Joueur getPlateauJoueurActuel() {
+        return plateauJoueurActuel;
+    }
 
+    public void setPlateauJoueurActuel(Joueur plateauJoueurActuel) {
+        this.plateauJoueurActuel = plateauJoueurActuel;
+    }
 
     public Plateau(int plateauLignes, int plateauColonnes, NouvellePartieInterface nouvellePartieInterface) {
         this.plateauLignes = plateauLignes;
@@ -32,6 +39,7 @@ public class Plateau extends JPanel implements MouseListener {
         colorToImage.put(Color.YELLOW, new ImageIcon("src/images/desert.png").getImage());
         colorToImage.put(Color.GREEN, new ImageIcon("src/images/plaine.png").getImage());
         this.nouvellePartieInterface = nouvellePartieInterface;
+        this.plateauJoueurActuel =null;
 
         assignRandomColors();
         plateauAttributionCases();
@@ -123,6 +131,7 @@ public class Plateau extends JPanel implements MouseListener {
     Case casecliquee = null;
     @Override
     public void mouseClicked(MouseEvent e) {
+
         int x = e.getX()-VariablesGlobales.DECALAGE;
         int y = e.getY();
         
@@ -131,10 +140,17 @@ public class Plateau extends JPanel implements MouseListener {
 
         if (col < VariablesGlobales.Y_MAX && lig < VariablesGlobales.X_MAX) {
             if (premierClic == null) {
-                System.out.println("1er clic");
-                premierClic = e;
+
                 casecliquee = plateauObtenirCase(lig, col);
                 unitecliquee = plateauObtenirUnite(lig, col);
+                //System.out.println("TOUR DU JOUEUR : "+this.plateauJoueurActuel.getJoueurNom());
+
+                if (unitecliquee!=null) {// && unitecliquee.getUniteJoueur()==this.plateauJoueurActuel) {
+                    premierClic = e;
+                    System.out.println("1er clic");
+                    //System.out.println("TOUR DU JOUEUR : "+this.plateauJoueurActuel.getJoueurNom());
+
+                }
             }
             else if (deuxiemeClic == null ) {
                 deuxiemeClic = e;
@@ -145,7 +161,7 @@ public class Plateau extends JPanel implements MouseListener {
 
                 if (unitecliquee != null) {
                     if (casecliquee.caseVoisins(casecliquee2)) { //unitecliquee.getUniteJoueur()== )
-                        System.out.println("tentative déplacement");
+                        //System.out.println("tentative déplacement");
                         int xarrivee = casecliquee2.getCaseX();
                         int yarrivee = casecliquee2.getCaseY();
                         unitecliquee.UniteDeplacementElementaire(xarrivee, yarrivee, this);
@@ -160,6 +176,8 @@ public class Plateau extends JPanel implements MouseListener {
                 premierClic = null;
                 deuxiemeClic = null;
             }
+
+            /*
 
 
             //Debug
@@ -302,6 +320,7 @@ public class Plateau extends JPanel implements MouseListener {
         this.plateauUnites[x1][y1]=null;
         this.plateauUnites[x2][y2]=uniteadeplacer;
     }
+
 
 
 

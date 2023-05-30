@@ -169,7 +169,7 @@ public class Unite {
         }
         else {
             cible.setUnitePVCourant(pvCourant);
-            msg ="Attaque : "+this.getUniteType()+" a attaqué "+ cible.getUniteType()+" et enlevé "+(potentielAttaque * bonusDefense) / 100+" PV";;
+            msg ="Attaque : "+this.getUniteType()+" a attaqué "+ cible.getUniteType()+" et enlevé "+(potentielAttaque * bonusDefense) / 100+" PV. PV Restant : "+cible.getUnitePVCourant();
         }
         JOptionPane.showMessageDialog(null,msg, "Attaque Effectuée", JOptionPane.INFORMATION_MESSAGE);
     }

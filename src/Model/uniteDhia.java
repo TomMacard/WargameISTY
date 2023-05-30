@@ -5,7 +5,7 @@ public class uniteDhia extends Unite{
     private static final int Attaque = 6;
     private static final int Defense = 1;
     private static final int PVmax = 11;
-    private static final int Deplacement = 20;
+    private static final int Deplacement = 12;
     private static final int vision = 4;
     private static final int portee = 1;
     private static final String type = "DHIA";
