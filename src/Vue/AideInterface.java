@@ -111,7 +111,7 @@ public class AideInterface extends JPanel {
 
         BufferedImage backgroundImage = null;
         try {
-            backgroundImage = ImageIO.read(new File("src/images/wooh.png"));
+            backgroundImage = ImageIO.read(new File("src/images/Aide.png"));
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(-1);

@@ -318,7 +318,7 @@ public class NouvellePartieInterface extends JPanel {
 
         caracteristiqueUnite1 = new JLabel("  " + uniteBassem.getAttaque()
                 + "    " + uniteBassem.getDefense()
-                + "    " + uniteBassem.getUnitePVCourant()
+                + "    " + uniteBassem.getPVmax()
                 + "    " + uniteBassem.getDeplacement()
                 + "    " + uniteBassem.getVision());
         caracteristiqueUnite1.setBounds(1000, 150, 370, 80);
