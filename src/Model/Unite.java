@@ -122,7 +122,6 @@ public class Unite implements Serializable {
     }
 
     public void setUnitePVCourant(int unitePVCourant) {
-
         this.unitePVCourant = unitePVCourant;
         notifyObservers();
     }
@@ -169,11 +168,9 @@ public class Unite implements Serializable {
         int bonusDefense = caseCible.getCaseDefense();
 
         String msg=null;
-
         // Réduire le potentiel de défense de la cible en fonction du potentiel d'attaque de l'attaquant
         pvCourant -= ((potentielAttaque-cible.getUnitePotDefense())* bonusDefense) / 100;
         int resultat = (int) pvCourant;
-
 
         // Si le potentiel de défense est négatif ou nul, la cible est détruite
         if (resultat <= 0) {

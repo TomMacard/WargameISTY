@@ -32,9 +32,6 @@ public class fonctions_de_traitements {
         }
     }
 
-
-
-
     public static void main(String[] args) throws UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 
         String buttonStyle = UIManager.getSystemLookAndFeelClassName();

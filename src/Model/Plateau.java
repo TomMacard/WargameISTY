@@ -161,7 +161,7 @@ public class Plateau extends JPanel implements MouseListener, Serializable {
                 //System.out.println(casecliquee.caseVoisins(casecliquee2));
 
                 if (unitecliquee != null) {
-                    if (1==1) {//casecliquee.caseVoisins(casecliquee2)) { //unitecliquee.getUniteJoueur()== )
+                    if (casecliquee.caseVoisins(casecliquee2)) { //unitecliquee.getUniteJoueur()== )
                         //System.out.println("tentative déplacement");
                         int xarrivee = casecliquee2.getCaseX();
                         int yarrivee = casecliquee2.getCaseY();
